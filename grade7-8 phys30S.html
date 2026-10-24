@@ -129,18 +129,69 @@ main{padding:28px 0 80px; min-width:0}
 </style>
     </head>
 <body>
-
+<a class="skip" href="#start">Skip to content</a>
 <div class="shell">
 
+<!-- ===== MODULE MENU =====
+     Each link points to a section id below (#m1, #m2...).
+     data-mod lets the script tick the module off when it is marked done. Used AI to help with the implementation of the menu and layout here -->
+<nav class="rail" aria-label="Modules">
+  <div class="rail-title">Physics in Grades 7 and 8</div>
+  <div class="rail-sub">A self-paced guide for middle years teachers</div>
+  <ol id="modnav">
+    <li><a href="#start"><span class="dot">✓</span><span>Start here</span></a></li>
+    <li><a href="#m1" data-mod="m1"><span class="dot">1</span><span>What changed<span class="mins">6 min</span></span></a></li>
+    <li><a href="#m2" data-mod="m2"><span class="dot">2</span><span>Grade 7 physics<span class="mins">14 min</span></span></a></li>
+    <li><a href="#m3" data-mod="m3"><span class="dot">3</span><span>Grade 8 physics<span class="mins">14 min</span></span></a></li>
+    <li><a href="#m4" data-mod="m4"><span class="dot">4</span><span>Hidden physics<span class="mins">6 min</span></span></a></li>
+    <li><a href="#m5" data-mod="m5"><span class="dot">5</span><span>Bridges to Science 9 and 10<span class="mins">8 min</span></span></a></li>
+    <li><a href="#m6" data-mod="m6"><span class="dot">6</span><span>Bridges to Physics 30S and 40S<span class="mins">10 min</span></span></a></li>
+    <li><a href="#m7" data-mod="m7"><span class="dot">7</span><span>Misconceptions<span class="mins">5 min</span></span></a></li>
+    <li><a href="#sources"><span class="dot">§</span><span>Sources</span></a></li>
+  </ol>
+  <div class="progress" aria-live="polite"><span id="progtext">0 of 7 modules done</span><div class="bar"><span id="progbar"></span></div></div>
+</nav>
+
+<main id="main">
+
+<!-- ================= START HERE =================
+     Title, intro, the rising path chart (an SVG drawing), and three tips. -->
+<section class="sheet hero" id="start">
+  <div>
+    <h1>Physics starts in Grade 7</h1>
+    <p class="lede"> Fill in intro here </p>
+    <p class="who">For middle years teachers at any comfort level with physics. About an hour in total; take the modules in any order.</p>
+  </div>
+ <!--------------------------------- The chart: one curved line plus a dot and label per course. To move a label, change its x and y numbers. Used AI for formatting graphical representation -------------------------------------------------------------------------------->
+  <figure class="arc" aria-label="A projectile-shaped path plotted on graph paper, rising from Grade 7 through Grade 8, Science 9 and Science 10 to Physics 30S and Physics 40S">
+    <svg viewBox="0 0 520 380" role="img" aria-hidden="true">
+      <defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10z" fill="#292B27"/></marker></defs>
+      <line x1="40" y1="340" x2="505" y2="340" stroke="#292B27" stroke-width="3" marker-end="url(#ah)"/>
+      <line x1="40" y1="340" x2="40" y2="20" stroke="#292B27" stroke-width="3" marker-end="url(#ah)"/>
+      <text x="500" y="366" text-anchor="end" font-family="Poppins,sans-serif" font-size="18" fill="#55574F">school years</text>
+      <text x="22" y="200" text-anchor="middle" transform="rotate(-90 22 200)" font-family="Poppins,sans-serif" font-size="18" fill="#55574F">physics they can do</text>
+      <path class="path" d="M60,322 C150,300 200,250 250,190 S360,70 470,48" fill="none" stroke="#C77A1E" stroke-width="5" stroke-linecap="round" stroke-dasharray="1200"/>
+      <g font-family="Poppins,sans-serif" font-weight="600" font-size="21">
+        <g class="pt" style="animation-delay:.5s"><circle cx="60" cy="322" r="11" fill="#C77A1E" stroke="#292B27" stroke-width="2.5"/><text x="52" y="296" text-anchor="start" fill="#292B27">Gr 7</text></g>
+        <g class="pt" style="animation-delay:.85s"><circle cx="142" cy="298" r="11" fill="#C77A1E" stroke="#292B27" stroke-width="2.5"/><text x="130" y="272" text-anchor="start" fill="#292B27">Gr 8</text></g>
+        <g class="pt" style="animation-delay:1.2s"><circle cx="214" cy="236" r="11" fill="#2F55B8" stroke="#292B27" stroke-width="2.5"/><text x="232" y="262" fill="#292B27">Sci 9</text></g>
+        <g class="pt" style="animation-delay:1.5s"><circle cx="276" cy="158" r="11" fill="#2F55B8" stroke="#292B27" stroke-width="2.5"/><text x="294" y="184" fill="#292B27">Sci 10</text></g>
+        <g class="pt" style="animation-delay:1.8s"><circle cx="360" cy="86" r="11" fill="#292B27"/><text x="344" y="78" text-anchor="end" fill="#292B27">Phys 30S</text></g>
+        <g class="pt" style="animation-delay:2.2s"><circle cx="470" cy="48" r="13" fill="#292B27"/><text x="500" y="88" text-anchor="end" fill="#292B27">Phys 40S</text></g>
+      </g>
+    </svg>
+  </figure>
+  <div style="grid-column:1/-1">
+    <div class="howto">
+      <div><strong>Work through it</strong>Each module ends with a button to mark it done. Your progress is saved in this browser.</div>
+      <div><strong>Look for the stars</strong><span class="star">★</span> marks the major outcomes: the ones senior high physics leans on hardest.</div>
+      <div><strong>Plant easter eggs</strong>Every demo and lab names the senior high idea it quietly prepares students for.</div>
+    </div>
 </div>
+</section>
 
-
-
-
-
+</main>
 </body>
-
-
 </html>
 
 
