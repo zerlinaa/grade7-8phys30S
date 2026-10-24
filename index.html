@@ -96,7 +96,7 @@ nav.rail{position:sticky; top:0; height:100vh; padding:28px 0; overflow:auto}
 .bar span{display:block; height:100%; width:0; background:var(--green); transition:width .3s}
 main{padding:28px 0 80px; min-width:0}
 
-/* ------------------------------------- sheet ----------------------------------
+/* --------------------------------------------------------------------- sheet -------------------------------------------------------------------------------
    Each module sits on a white "sheet" laid over the graph paper. */
 .sheet{background:var(--sheet); border-radius:var(--radius-lg); padding:44px 52px; margin-bottom:36px; box-shadow:0 1px 0 var(--rule)}
 .prose{max-width:720px}
@@ -110,7 +110,7 @@ main{padding:28px 0 80px; min-width:0}
 .mod-foot{margin-top:34px; padding-top:20px; border-top:1px solid var(--rule); display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; align-items:center}
 .mod-foot .mark{font-size:15px; padding:10px 20px}
 
-/* ---------- hero (the Start here section) ---------- */
+/* ---------------------------------------------------------- hero (the Start here section) -------------------------------------------------------------------------------- */
 .hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:40px; align-items:center; padding:52px 52px 44px}
 .hero h1{font-size:clamp(40px,5.4vw,66px); font-weight:700; letter-spacing:-.025em; line-height:1.02; margin-bottom:22px}
 .hero .who{font-family:var(--head); font-size:15px; color:var(--ink-soft); margin-top:20px}
@@ -125,6 +125,45 @@ main{padding:28px 0 80px; min-width:0}
 .howto{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; margin-top:8px}
 .howto div{border-top:3px solid var(--ink); padding-top:12px; font-size:16px}
 .howto strong{font-family:var(--head); font-size:15px; display:block;margin-bottom:4px}
+
+/* -------------------------------------------------------------- reusable bits ----------------------------------------------------------------- AI was used to help format tables and how the SLOs look */
+/* outcome code chips; colour shows the grade band */
+.slo{display:inline-block;font-family:var(--head);font-size:12.5px;font-weight:600;padding:2px 9px;border-radius:99px;background:var(--sheet-2);border:1px solid var(--rule);color:var(--ink);white-space:nowrap;margin:2px 4px 2px 0;text-decoration:none}
+.slo.g7,.slo.g8{background:#F6E2C6;border-color:#E4C095}
+.slo.g9,.slo.g10{background:var(--blue-soft);border-color:#B7C6EC}
+.slo.s30,.slo.s40{background:var(--ink);border-color:var(--ink);color:#fff}
+/* ★ marks a major outcome */
+.star{color:#B8860B;font-family:var(--head)}
+/* yellow call-out box */
+.note{background:var(--yellow-soft);border-radius:var(--radius-sm);padding:16px 20px;font-size:16.5px;margin:18px 0}
+.note strong{font-family:var(--head);font-size:15px}
+.callout-red{background:var(--red-soft)}
+/* tables: charcoal header row, light stripes on every other row */
+table{border-collapse:collapse;width:100%;font-size:16px}
+th,td{text-align:left;vertical-align:top;padding:12px 14px;border-bottom:1px solid var(--rule)}
+th{font-family:var(--head);font-size:14px;font-weight:600;background:var(--ink);color:#fff}
+th:first-child{border-top-left-radius:10px}th:last-child{border-top-right-radius:10px}
+tbody tr:nth-child(even) td{background:rgba(241,236,228,.6)}
+.tablewrap{overflow-x:auto;margin:16px 0 8px}
+
+/* ---------- responsive ---------- */
+ 
+
+footer{font-family:var(--head);font-size:14px;color:var(--ink-soft);padding:8px 0 40px}
+footer p{margin:0 0 6px}
+
+/* ------------------------------------------------------------------------------ print ----------------------------------------------------------------
+   Printing hides the menu and buttons, opens every outcome list,
+   and starts each module on a new page. */
+@media print{
+  body{background:#fff;font-size:12pt}
+  .shell{display:block;padding:0}
+  nav.rail,.mark,.dir,.tabs,.skip,.printbtn{display:none!important}
+  .sheet{box-shadow:none;padding:0;margin:0 0 18pt;page-break-before:always;background:#fff}
+  .hero{page-break-before:avoid}
+  details.outcomes>summary{display:none}
+  .act,.theme,.bridge,.stage,tr{break-inside:avoid}
+  a{color:var(--ink)}}
 
 </style>
     </head>
@@ -154,7 +193,7 @@ main{padding:28px 0 80px; min-width:0}
 
 <main id="main">
 
-<!-- ================= START HERE =================
+<!-- ======================================================================= START HERE =====================================================================================
      Title, intro, the rising path chart (an SVG drawing), and three tips. -->
 <section class="sheet hero" id="start">
   <div>
@@ -190,7 +229,73 @@ main{padding:28px 0 80px; min-width:0}
 </div>
 </section>
 
+<!-- =================================================== MODULE 1: What changed? ================================================================
+     Strand table, then the old-cluster to renewed-outcome map. -->
+<section class="sheet" id="m1" aria-labelledby="m1h">
+  <div class="mod-head"><h2 id="m1h">1. What changed in the curriculum</h2><span class="mod-meta">6 minutes</span></div>
+  <div class="prose">
+    <p class="lede">Manitoba's renewed Kindergarten to Grade 10 science curriculum replaces the old cluster units (Grade 7 Forces and Structures, Grade 8 Optics, and so on) with five strands that run through the whole year.</p>
+    <p>The renewed documents were posted for voluntary implementation in 2025–26, and the province announced a fall 2026 rollout. Check your own division's timeline. Physics 30S and 40S have not changed; they still use the Senior 3 and Senior 4 physics outcomes.</p>
+  </div>
+  <div class="tablewrap"><table>
+    <thead><tr><th style="width:30%">Strand</th><th>What it means for physics in your room</th></tr></thead>
+    <tbody>
+      <tr><td><b>A. Indigenous Knowledge Systems</b><br><span class="slo g7">SCI.7.A.1</span><span class="slo g8">SCI.8.A.1</span></td><td>First Nations, Métis and Inuit ways of observing, interpreting and creating technologies. Module 2 and 3 suggest physics-rich examples: INSERT EXAMPLES HERE></td></tr>
+      <tr><td><b>B. Science Identity</b></td><td>Students seeing themselves as people who do science. Curiosity moments matter here as much as content.</td></tr>
+      <tr><td><b>C. Practical Science</b><br><span class="slo g7">SCI.7.C.2</span><span class="slo g8">SCI.8.C.2</span></td><td>Measurement with SI units. Grade 7 introduces force in newtons (N), energy in joules (J) and speed in m/s. That is the exact toolkit of Physics 40S.</td></tr>
+      <tr><td><b>D. Nature of Science</b> (Grades 7 to 9 band)</td><td>Predictions, fair tests, variables, models and their limits. This is where the scientific method lives.</td></tr>
+      <tr><td><b>E. Scientific Knowledge</b></td><td>The content outcomes. Physics now shows up as gravity, energy, particles, light and the Earth's energy budget, rather than in a single unit.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Where the physics went</h3>
+  <p class="prose">If you taught the old clusters, this is our reading of where their physics now lives. It's an approximate map, not an official crosswalk.</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Old cluster</th><th>Renewed outcomes</th><th>What to notice</th></tr></thead>
+    <tbody>
+      <tr><td>Grade 7: Particle Theory of Matter</td><td><span class="slo g7">SCI.7.E.1–E.3</span><span class="slo g7">SCI.7.E.8–E.11</span></td><td>Heat and temperature now sit inside a bigger idea: energy transfer and dissipation.</td></tr>
+      <tr><td>Grade 7: Forces and Structures</td><td><span class="slo g7">SCI.7.E.4–E.7</span></td><td>Gravity, weight in newtons and orbits are front and centre. We did not find a direct structures equivalent in the renewed Grade 7.</td></tr>
+      <tr><td>Grade 8: Fluids</td><td><span class="slo g8">SCI.8.E.1–E.5</span></td><td>Density, viscosity and pressure, now explained with the particle model.</td></tr>
+      <tr><td>Grade 8: Optics</td><td><span class="slo g8">SCI.8.E.7–E.9</span></td><td>Light is now taught as electromagnetic radiation from the Sun, including the full spectrum.</td></tr>
+      <tr><td>Senior 1: Exploring the Universe</td><td><span class="slo g7">SCI.7.E.12–E.16</span><span class="slo g10">SCI.10.E.15–E.18</span></td><td>Much of the astronomy moves down into Grade 7.</td></tr>
+      <tr><td>Senior 1: Nature of Electricity</td><td><span class="slo g9">SCI.9.E.6</span><span class="slo g9">SCI.9.E.8–E.14</span></td><td>Still in Grade 9, now including Manitoba hydroelectricity.</td></tr>
+      <tr><td>Senior 2: In Motion</td><td><span class="slo g10">SCI.10.E.6–E.7</span></td><td>Motion and Newton's laws stay in Grade 10.</td></tr>
+    </tbody>
+  </table></div>
+  <!-- Module footer. The button's data-mod must match this section's id. -->
+  <div class="mod-foot"><span class="mod-meta">Next: Grade 7 physics</span><button class="mark" data-mod="m1" aria-pressed="false">Mark module 1 done</button></div>
+</section>
+<!-- =================================================== MODULE 2: Grade 7 ================================================================-->
+
+<!-- =================================================== MODULE 3: Grade 8 ================================================================-->
+
+<!-- =================================================== MODULE 4: Hidden Physics ================================================================-->
+
+<!-- =================================================== MODULE 5: Science 9 and 10 ================================================================-->
+
+<!-- =================================================== MODULE 6: Physics 30S and 40S ================================================================-->
+
+<!-- =================================================== MODULE 7: Misconceptions ================================================================-->
+
+<!-- =================================================== Sources ================================================================-->
+
+
+
+
+<!----------------------------------------------------------- Team names and credit line ----------------------------------------------------------------->
+<footer>
+  <p>Prepared by Zerlina Abhazim, Harshdeep Kaur, Corey Feere, and INSERT NAME HERE for EDUC 4750, University of Winnipeg.</p>
+  <p>Physics of Grades 7 and 8. Built from the renewed Manitoba science curriculum as posted in 2026.</p>
+</footer>
+</div>
 </main>
+
+
+
+
+
+
+
 </body>
 </html>
 
