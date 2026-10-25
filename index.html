@@ -158,12 +158,12 @@ footer p{margin:0 0 6px}
 @media print{
   body{background:#fff;font-size:12pt}
   .shell{display:block;padding:0}
-  nav.rail,.mark,.dir,.tabs,.skip,.printbtn{display:none!important}
-  .sheet{box-shadow:none;padding:0;margin:0 0 18pt;page-break-before:always;background:#fff}
-  .hero{page-break-before:avoid}
+  nav.rail,.mark,.skip{display:none!important}
+  .sheet{padding:0;margin:0 0 18pt;page-break-before:always}
+  #start{page-break-before:avoid}
   details.outcomes>summary{display:none}
-  .act,.theme,.bridge,.stage,tr{break-inside:avoid}
-  a{color:var(--ink)}}
+  .act,.theme,tr{break-inside:avoid}
+}
 
 </style>
     </head>
@@ -171,111 +171,94 @@ footer p{margin:0 0 6px}
 <a class="skip" href="#start">Skip to content</a>
 <div class="shell">
 
-<!-- ===== MODULE MENU =====
+<!-- ======================================================================= MODULE MENU =================================================================
      Each link points to a section id below (#m1, #m2...).
      data-mod lets the script tick the module off when it is marked done. Used AI to help with the implementation of the menu and layout here -->
 <nav class="rail" aria-label="Modules">
   <div class="rail-title">Physics in Grades 7 and 8</div>
-  <div class="rail-sub">A self-paced guide for middle years teachers</div>
+  <div class="rail-sub">A 30-minute guide for middle years teachers</div>
   <ol id="modnav">
     <li><a href="#start"><span class="dot">✓</span><span>Start here</span></a></li>
-    <li><a href="#m1" data-mod="m1"><span class="dot">1</span><span>What changed<span class="mins">6 min</span></span></a></li>
-    <li><a href="#m2" data-mod="m2"><span class="dot">2</span><span>Grade 7 physics<span class="mins">14 min</span></span></a></li>
-    <li><a href="#m3" data-mod="m3"><span class="dot">3</span><span>Grade 8 physics<span class="mins">14 min</span></span></a></li>
-    <li><a href="#m4" data-mod="m4"><span class="dot">4</span><span>Hidden physics<span class="mins">6 min</span></span></a></li>
-    <li><a href="#m5" data-mod="m5"><span class="dot">5</span><span>Bridges to Science 9 and 10<span class="mins">8 min</span></span></a></li>
-    <li><a href="#m6" data-mod="m6"><span class="dot">6</span><span>Bridges to Physics 30S and 40S<span class="mins">10 min</span></span></a></li>
-    <li><a href="#m7" data-mod="m7"><span class="dot">7</span><span>Misconceptions<span class="mins">5 min</span></span></a></li>
+    <li><a href="#m1" data-mod="m1"><span class="dot">1</span><span>What changed<span class="mins">3 min</span></span></a></li>
+    <li><a href="#m2" data-mod="m2"><span class="dot">2</span><span>Grade 7 physics<span class="mins">11 min</span></span></a></li>
+    <li><a href="#m3" data-mod="m3"><span class="dot">3</span><span>Grade 8 physics<span class="mins">11 min</span></span></a></li>
+    <li><a href="#m4" data-mod="m4"><span class="dot">4</span><span>Looking ahead<span class="mins">4 min</span></span></a></li>
     <li><a href="#sources"><span class="dot">§</span><span>Sources</span></a></li>
   </ol>
-  <div class="progress" aria-live="polite"><span id="progtext">0 of 7 modules done</span><div class="bar"><span id="progbar"></span></div></div>
+  <div class="progress" aria-live="polite"><span id="progtext">0 of 4 modules done</span><div class="bar"><span id="progbar"></span></div></div>
 </nav>
 
 <main id="main">
 
 <!-- ======================================================================= START HERE =====================================================================================
      Title, intro, the rising path chart (an SVG drawing), and three tips. -->
-<section class="sheet hero" id="start">
-  <div>
-    <h1>Physics starts in Grade 7</h1>
-    <p class="lede"> Fill in intro here </p>
-    <p class="who">For middle years teachers at any comfort level with physics. About an hour in total; take the modules in any order.</p>
-  </div>
- <!--------------------------------- The chart: one curved line plus a dot and label per course. To move a label, change its x and y numbers. Used AI for formatting graphical representation -------------------------------------------------------------------------------->
-  <figure class="arc" aria-label="A projectile-shaped path plotted on graph paper, rising from Grade 7 through Grade 8, Science 9 and Science 10 to Physics 30S and Physics 40S">
-    <svg viewBox="0 0 520 380" role="img" aria-hidden="true">
-      <defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10z" fill="#292B27"/></marker></defs>
-      <line x1="40" y1="340" x2="505" y2="340" stroke="#292B27" stroke-width="3" marker-end="url(#ah)"/>
-      <line x1="40" y1="340" x2="40" y2="20" stroke="#292B27" stroke-width="3" marker-end="url(#ah)"/>
-      <text x="500" y="366" text-anchor="end" font-family="Poppins,sans-serif" font-size="18" fill="#55574F">school years</text>
-      <text x="22" y="200" text-anchor="middle" transform="rotate(-90 22 200)" font-family="Poppins,sans-serif" font-size="18" fill="#55574F">physics they can do</text>
-      <path class="path" d="M60,322 C150,300 200,250 250,190 S360,70 470,48" fill="none" stroke="#C77A1E" stroke-width="5" stroke-linecap="round" stroke-dasharray="1200"/>
-      <g font-family="Poppins,sans-serif" font-weight="600" font-size="21">
-        <g class="pt" style="animation-delay:.5s"><circle cx="60" cy="322" r="11" fill="#C77A1E" stroke="#292B27" stroke-width="2.5"/><text x="52" y="296" text-anchor="start" fill="#292B27">Gr 7</text></g>
-        <g class="pt" style="animation-delay:.85s"><circle cx="142" cy="298" r="11" fill="#C77A1E" stroke="#292B27" stroke-width="2.5"/><text x="130" y="272" text-anchor="start" fill="#292B27">Gr 8</text></g>
-        <g class="pt" style="animation-delay:1.2s"><circle cx="214" cy="236" r="11" fill="#2F55B8" stroke="#292B27" stroke-width="2.5"/><text x="232" y="262" fill="#292B27">Sci 9</text></g>
-        <g class="pt" style="animation-delay:1.5s"><circle cx="276" cy="158" r="11" fill="#2F55B8" stroke="#292B27" stroke-width="2.5"/><text x="294" y="184" fill="#292B27">Sci 10</text></g>
-        <g class="pt" style="animation-delay:1.8s"><circle cx="360" cy="86" r="11" fill="#292B27"/><text x="344" y="78" text-anchor="end" fill="#292B27">Phys 30S</text></g>
-        <g class="pt" style="animation-delay:2.2s"><circle cx="470" cy="48" r="13" fill="#292B27"/><text x="500" y="88" text-anchor="end" fill="#292B27">Phys 40S</text></g>
-      </g>
-    </svg>
-  </figure>
-  <div style="grid-column:1/-1">
-    <div class="howto">
-      <div><strong>Work through it</strong>Each module ends with a button to mark it done. Your progress is saved in this browser.</div>
-      <div><strong>Look for the stars</strong><span class="star">★</span> marks the major outcomes: the ones senior high physics leans on hardest.</div>
-      <div><strong>Plant easter eggs</strong>Every demo and lab names the senior high idea it quietly prepares students for.</div>
+<section class="sheet" id="start">
+  <div class="hero">
+    <div>
+      <h1>Physics starts in Grade 7</h1>
+      <p class="lede">Every Physics 40S student was once in a middle years classroom. This guide walks you through the physics in Manitoba's renewed Grade 7 and 8 science outcomes, with demos, labs and activities that build the foundations senior high physics relies on.</p>
+      <p class="who">For middle years teachers at any comfort level with physics. About 30 minutes. <span class="star">★</span> marks the outcomes that matter most.</p>
     </div>
-</div>
+    <!-- The chart: one curved line plus a dot and label per course. To move a label, change its x and y. -->
+    <figure class="arc" aria-label="A path on graph paper rising from Grade 7 and Grade 8 through Science 9 and 10 to Physics 30S and 40S">
+      <svg viewBox="0 0 520 380" aria-hidden="true">
+        <defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10z" fill="#292B27"/></marker></defs>
+        <line x1="40" y1="340" x2="505" y2="340" stroke="#292B27" stroke-width="3" marker-end="url(#ah)"/>
+        <line x1="40" y1="340" x2="40" y2="20" stroke="#292B27" stroke-width="3" marker-end="url(#ah)"/>
+        <text x="500" y="366" text-anchor="end" font-family="Poppins,sans-serif" font-size="18" fill="#55574F">school years</text>
+        <text x="22" y="200" text-anchor="middle" transform="rotate(-90 22 200)" font-family="Poppins,sans-serif" font-size="18" fill="#55574F">physics they can do</text>
+        <path class="path" d="M60,322 C150,300 200,250 250,190 S360,70 470,48" fill="none" stroke="#C77A1E" stroke-width="5" stroke-linecap="round"/>
+        <g font-family="Poppins,sans-serif" font-weight="600" font-size="21" fill="#292B27">
+          <g class="pt" style="animation-delay:.5s"><circle cx="60" cy="322" r="13" fill="#C77A1E" stroke="#292B27" stroke-width="2.5"/><text x="52" y="294">Gr 7</text></g>
+          <g class="pt" style="animation-delay:.85s"><circle cx="142" cy="298" r="13" fill="#C77A1E" stroke="#292B27" stroke-width="2.5"/><text x="130" y="270">Gr 8</text></g>
+          <g class="pt" style="animation-delay:1.2s"><circle cx="214" cy="236" r="9" fill="#2F55B8" stroke="#292B27" stroke-width="2"/><text x="232" y="262">Sci 9</text></g>
+          <g class="pt" style="animation-delay:1.5s"><circle cx="276" cy="158" r="9" fill="#2F55B8" stroke="#292B27" stroke-width="2"/><text x="294" y="184">Sci 10</text></g>
+          <g class="pt" style="animation-delay:1.8s"><circle cx="360" cy="86" r="9" fill="#292B27"/><text x="344" y="78" text-anchor="end">Phys 30S</text></g>
+          <g class="pt" style="animation-delay:2.2s"><circle cx="470" cy="48" r="10" fill="#292B27"/><text x="500" y="88" text-anchor="end">Phys 40S</text></g>
+        </g>
+      </svg>
+    </figure>
+  </div>
 </section>
 
 <!-- =================================================== MODULE 1: What changed? ================================================================
      Strand table, then the old-cluster to renewed-outcome map. -->
 <section class="sheet" id="m1" aria-labelledby="m1h">
-  <div class="mod-head"><h2 id="m1h">1. What changed in the curriculum</h2><span class="mod-meta">6 minutes</span></div>
+  <div class="mod-head"><h2 id="m1h">1. What changed</h2><span class="mod-meta">3 minutes</span></div>
   <div class="prose">
-    <p class="lede">Manitoba's renewed Kindergarten to Grade 10 science curriculum replaces the old cluster units (Grade 7 Forces and Structures, Grade 8 Optics, and so on) with five strands that run through the whole year.</p>
-    <p>The renewed documents were posted for voluntary implementation in 2025–26, and the province announced a fall 2026 rollout. Check your own division's timeline. Physics 30S and 40S have not changed; they still use the Senior 3 and Senior 4 physics outcomes.</p>
+    <p class="lede">The renewed Kindergarten to Grade 10 science curriculum replaces the old cluster units with five strands that run all year. Physics no longer lives in one unit; it shows up across the year as gravity, energy, particles and light.</p>
+    <p>The renewed documents were posted for voluntary implementation in 2025–26, with a provincial rollout announced for fall 2026. Check your division's timeline.</p>
   </div>
   <div class="tablewrap"><table>
-    <thead><tr><th style="width:30%">Strand</th><th>What it means for physics in your room</th></tr></thead>
+    <thead><tr><th style="width:34%">Strand</th><th>For physics, this means</th></tr></thead>
     <tbody>
-      <tr><td><b>A. Indigenous Knowledge Systems</b><br><span class="slo g7">SCI.7.A.1</span><span class="slo g8">SCI.8.A.1</span></td><td>First Nations, Métis and Inuit ways of observing, interpreting and creating technologies. Module 2 and 3 suggest physics-rich examples: INSERT EXAMPLES HERE></td></tr>
-      <tr><td><b>B. Science Identity</b></td><td>Students seeing themselves as people who do science. Curiosity moments matter here as much as content.</td></tr>
-      <tr><td><b>C. Practical Science</b><br><span class="slo g7">SCI.7.C.2</span><span class="slo g8">SCI.8.C.2</span></td><td>Measurement with SI units. Grade 7 introduces force in newtons (N), energy in joules (J) and speed in m/s. That is the exact toolkit of Physics 40S.</td></tr>
-      <tr><td><b>D. Nature of Science</b> (Grades 7 to 9 band)</td><td>Predictions, fair tests, variables, models and their limits. This is where the scientific method lives.</td></tr>
-      <tr><td><b>E. Scientific Knowledge</b></td><td>The content outcomes. Physics now shows up as gravity, energy, particles, light and the Earth's energy budget, rather than in a single unit.</td></tr>
+      <tr><td>A. Indigenous Knowledge Systems</td><td>First Nations, Métis and Inuit ways of observing and creating technologies (SCI.7.A.1, SCI.8.A.1).</td></tr>
+      <tr><td>B. Science Identity</td><td>Students seeing themselves as people who do science.</td></tr>
+      <tr><td>C. Practical Science</td><td>Measurement in SI units. Grade 7 measurement includes newtons (N), joules (J) and m/s.</td></tr>
+      <tr><td>D. Nature of Science</td><td>Predictions, fair tests, variables and models: the scientific method.</td></tr>
+      <tr><td>E. Scientific Knowledge</td><td>The content outcomes, covered in Modules 2 and 3.</td></tr>
     </tbody>
   </table></div>
-
-  <h3>Where the physics went</h3>
-  <p class="prose">If you taught the old clusters, this is our reading of where their physics now lives. It's an approximate map, not an official crosswalk.</p>
+  <h3>If you taught the old clusters</h3>
   <div class="tablewrap"><table>
-    <thead><tr><th>Old cluster</th><th>Renewed outcomes</th><th>What to notice</th></tr></thead>
+    <thead><tr><th>Old cluster</th><th>Where its physics is now</th></tr></thead>
     <tbody>
-      <tr><td>Grade 7: Particle Theory of Matter</td><td><span class="slo g7">SCI.7.E.1–E.3</span><span class="slo g7">SCI.7.E.8–E.11</span></td><td>Heat and temperature now sit inside a bigger idea: energy transfer and dissipation.</td></tr>
-      <tr><td>Grade 7: Forces and Structures</td><td><span class="slo g7">SCI.7.E.4–E.7</span></td><td>Gravity, weight in newtons and orbits are front and centre. We did not find a direct structures equivalent in the renewed Grade 7.</td></tr>
-      <tr><td>Grade 8: Fluids</td><td><span class="slo g8">SCI.8.E.1–E.5</span></td><td>Density, viscosity and pressure, now explained with the particle model.</td></tr>
-      <tr><td>Grade 8: Optics</td><td><span class="slo g8">SCI.8.E.7–E.9</span></td><td>Light is now taught as electromagnetic radiation from the Sun, including the full spectrum.</td></tr>
-      <tr><td>Senior 1: Exploring the Universe</td><td><span class="slo g7">SCI.7.E.12–E.16</span><span class="slo g10">SCI.10.E.15–E.18</span></td><td>Much of the astronomy moves down into Grade 7.</td></tr>
-      <tr><td>Senior 1: Nature of Electricity</td><td><span class="slo g9">SCI.9.E.6</span><span class="slo g9">SCI.9.E.8–E.14</span></td><td>Still in Grade 9, now including Manitoba hydroelectricity.</td></tr>
-      <tr><td>Senior 2: In Motion</td><td><span class="slo g10">SCI.10.E.6–E.7</span></td><td>Motion and Newton's laws stay in Grade 10.</td></tr>
+      <tr><td>Grade 6: The Solar System</td><td>Mass versus weight, rotation, seasons and Moon phases move up to Grade 7 <span class="slo g7">SCI.7.E.5</span><span class="slo g7">SCI.7.E.12–E.16</span>. Universal gravity, orbits and tides <span class="slo g7">SCI.7.E.4</span><span class="slo g7">SCI.7.E.6</span><span class="slo g7">SCI.7.E.7</span> are new.</td></tr>
+      <tr><td>Grade 7: Particle Theory of Matter</td><td>Heat, temperature and heat transfer stay in Grade 7, now framed as energy transfer <span class="slo g7">SCI.7.E.1–E.3</span><span class="slo g7">SCI.7.E.8–E.11</span>.</td></tr>
+      <tr><td>Grade 7: Forces and Structures</td><td>No direct equivalent. Structures, internal and external forces, and centre of gravity don't appear in the renewed Grade 7 outcomes.</td></tr>
+      <tr><td>Grade 8: Fluids</td><td>Density, viscosity and pressure–temperature stay <span class="slo g8">SCI.8.E.1–E.5</span>. Pressure as force over area moves to Grade 10 <span class="slo g10">SCI.10.E.8</span>. Hydraulics and pneumatics no longer appear.</td></tr>
+      <tr><td>Grade 8: Optics</td><td>The electromagnetic spectrum stays, now through solar radiation <span class="slo g8">SCI.8.E.7–E.9</span>. Reflection, refraction, lenses and colour mixing no longer appear.</td></tr>
     </tbody>
   </table></div>
-  <!-- Module footer. The button's data-mod must match this section's id. -->
   <div class="mod-foot"><span class="mod-meta">Next: Grade 7 physics</span><button class="mark" data-mod="m1" aria-pressed="false">Mark module 1 done</button></div>
 </section>
+
 <!-- =================================================== MODULE 2: Grade 7 ================================================================-->
 
 <!-- =================================================== MODULE 3: Grade 8 ================================================================-->
 
-<!-- =================================================== MODULE 4: Hidden Physics ================================================================-->
+<!-- =================================================== MODULE 4: Looking Ahead ================================================================-->
 
-<!-- =================================================== MODULE 5: Science 9 and 10 ================================================================-->
-
-<!-- =================================================== MODULE 6: Physics 30S and 40S ================================================================-->
-
-<!-- =================================================== MODULE 7: Misconceptions ================================================================-->
 
 <!-- =================================================== Sources ================================================================-->
 
