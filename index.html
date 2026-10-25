@@ -13,6 +13,10 @@ upload this same file to any website. Fonts
 come from Google Fonts when online; offline, 
 the browser uses similar built-in fonts, so 
 nothing breaks. 
+
+Consulted with Claude AI for layout and specific CSS code for website. 
+
+
 =============================================================================
 -->
 <meta charset="utf-8">
@@ -27,7 +31,7 @@ nothing breaks.
 
 /* ---------- colours and fonts: change one here, it changes everywhere ---------- */
 :root{
-  --paper:#E3DDD3; --grid:#D2CBBF; --sheet:#FAF8F4; --sheet-2:#F1ECE4;
+  --paper:#E3DDD3; --grid:#D2CBBF; --sheet:#f7f5de; --sheet-2:#F1ECE4; --sheet-3:#fffffc;
   --ink:#292B27; --ink-soft:#55574F; --rule:#C9C1B4;
   --yellow:#F2C94C; --yellow-soft:#FBEDBF; --blue:#2F55B8; --blue-soft:#DCE4F7;
   --red:#A8382C; --green:#2F7D5B; --mid:#C77A1E;
@@ -149,7 +153,7 @@ dl.olist dd{margin:0}
 .act .egg{margin-top:auto;padding-top:12px;font-size:15px;border-top:1px dashed var(--rule)}
 .act .egg strong{font-family:var(--head);font-size:13.5px}
 /* blank template cards: dashed outline and grey placeholder text until filled in */
-.act.blank{background:transparent;border:2px dashed var(--rule)}
+.act.blank{background:var(--sheet-3);border:2px dashed var(--rule)}
 .act.blank h4,.act.blank p{color:var(--ink-soft)}
 
 /* fair-test (scientific method) table */
@@ -407,7 +411,123 @@ footer p{margin:0 0 6px}
   <div class="mod-foot"><span class="mod-meta">Next: Grade 8 physics</span><button class="mark" data-mod="m2" aria-pressed="false">Mark module 2 done</button></div>
 </section>
 
-<!-- =================================================== MODULE 3: Grade 8 ================================================================-->
+<!-- =================================================== MODULE 3: Grade 8 (repetition from grade 7 mod)================================================================-->
+<section class="sheet" id="m3" aria-labelledby="m3h">
+  <div class="mod-head"><h2 id="m3h">3. Grade 8 physics</h2><span class="mod-meta">11 minutes</span></div>
+  <p class="lede prose">Grade 8 physics [FILL IN CONTENT].</p>
+
+  <h3>Major themes</h3>
+  <div class="themes">
+    <div class="theme major"><h4><span class="star">★</span> [FILL IN CONTENT]</h4><span class="slo g8">[SLO]</span><span class="slo g8">[SLO]</span><span class="slo g8">[SLO]</span><p>[fill in content]</p></div>
+    <div class="theme major"><h4><span class="star">★</span> [FILL IN CONTENT]</h4><span class="slo g8">[SLO]</span><span class="slo g8">[SLO]</span><span class="slo g8">[SLO]</span><p>[fill in content]</p></div>
+    <div class="theme major"><h4><span class="star">★</span> [FILL IN CONTENT]</h4><span class="slo g8">[SLO]</span><span class="slo g8">[SLO]</span><span class="slo g8">[SLO]</span><p>[fill in content]</p></div>
+    <div class="theme major"><h4><span class="star">★</span> [FILL IN CONTENT]</h4><span class="slo g8">[SLO]</span><span class="slo g8">[SLO]</span><span class="slo g8">[SLO]</span><p>[fill in content]</p></div>
+  </div>
+
+  <!-- Full official wording; opens when clicked (and automatically when printing) -->
+  <details class="outcomes">
+    <summary>Read the Grade 8 physics outcomes in full</summary>
+    <dl class="olist">
+      <div><dt><span class="star">★</span> SCI.8.E.1</dt><dd>Demonstrate an understanding of the nature of density as a physical property of matter.<span class="inc">Include: mass, volume, density, d=m/v.</span></dd></div>
+      <div><dt>SCI.8.E.2</dt><dd>Demonstrate an understanding of the effect of temperature on density using the particle theory of matter.<span class="inc">Include: solids, liquids, gases.</span></dd></div>
+      <div><dt>SCI.8.E.3</dt><dd>Demonstrate an understanding of the nature of viscosity as a physical property of a fluid.</dd></div>
+      <div><dt>SCI.8.E.4</dt><dd>Demonstrate an understanding of the relationship between temperature, volume, and pressure using the particle theory of matter.<span class="inc">Include: water, steam, vapor, ice, compressibility.</span></dd></div>
+      <div><dt>SCI.8.E.5</dt><dd>Demonstrate an understanding of how the nature of attractions between particles in a substance dictate how much energy is required to cause their temperatures and phases to change.</dd></div>
+      <div><dt><span class="star">★</span> SCI.8.E.7</dt><dd>Demonstrate the understanding that energy from the Sun travels through empty space to Earth, where it is absorbed or reflected by the atmosphere, hydrosphere, and lithosphere.<span class="inc">Include: radiation, electromagnetic waves, solar spectrum, albedo.</span></dd></div>
+      <div><dt>SCI.8.E.8</dt><dd>Demonstrate an understanding of the nature of solar radiation.<span class="inc">Include: electromagnetic waves, visible light, solar spectrum.</span></dd></div>
+      <div><dt><span class="star">★</span> SCI.8.E.9</dt><dd>Demonstrate an understanding of various types of electromagnetic radiation with respect to relative energy, frequency, wavelength, and applications.</dd></div>
+      <div><dt>SCI.8.E.13</dt><dd>Demonstrate the understanding that solar energy heats the surface of Earth.</dd></div>
+      <div><dt>SCI.8.E.15</dt><dd>Demonstrate a basic understanding that all energy arriving at Earth from the Sun eventually radiates back into space.</dd></div>
+      <div><dt>SCI.8.E.17</dt><dd>Demonstrate an understanding of the mechanisms of the greenhouse effect in raising temperatures on Earth.</dd></div>
+      <div><dt>SCI.8.C.2</dt><dd>Measure using appropriate tools, units and techniques.<span class="inc">Includes barometers, spectrometers, density, and pressure (Pa, kPa).</span></dd></div>
+    </dl>
+  </details>
+
+    <h3>The physics in plain words</h3>
+  <div class="bg">
+    <div><h4>[FILL IN CONTENT]</h4>[FILL IN CONTENT]</div>
+    <div><h4>[FILL IN CONTENT]</h4>[FILL IN CONTENT]</div>
+    <div><h4>[FILL IN CONTENT]</h4>[FILL IN CONTENT]</div>
+    <div><h4>[FILL IN CONTENT]</h4>[FILL IN CONTENT]</div>
+  </div>
+
+  <!-- Demonstrations: two blank cards to fill in -->
+  <h3>Demonstrations</h3>
+  <div class="acts">
+    <article class="act k-demo blank"><span class="kind"><i></i>Demonstration</span>
+      <h4>[Demonstration title]</h4><div><span class="slo g8">[SCI.8.E.?]</span></div>
+      <p>[What you do, in two or three sentences.]</p>
+      <p class="ask">[The question to ask students.]</p>
+      <p class="egg"><strong>Senior high link</strong><br>[The later physics idea it prepares them for.]</p></article>
+    <article class="act k-demo blank"><span class="kind"><i></i>Demonstration</span>
+      <h4>[Demonstration title]</h4><div><span class="slo g8">[SCI.8.E.?]</span></div>
+      <p>[What you do, in two or three sentences.]</p>
+      <p class="ask">[The question to ask students.]</p>
+      <p class="egg"><strong>Senior high link</strong><br>[The later physics idea it prepares them for.]</p></article>
+  </div>
+
+  <!-- Labs: need 2 examples, just blank cards for now -->
+  <h3>Labs</h3>
+  <div class="acts">
+    <article class="act k-lab blank"><span class="kind"><i></i>Lab</span>
+      <h4>[Lab title]</h4><div><span class="slo g8">[SCI.8.E.?]</span></div>
+      <p>[What students do and measure.]</p>
+      <p>[Safety note, if any.]</p>
+      <p class="egg"><strong>Senior high link</strong><br>[The later physics idea it prepares them for.]</p></article>
+    <article class="act k-lab blank"><span class="kind"><i></i>Lab</span>
+      <h4>[Lab title]</h4><div><span class="slo g8">[SCI.8.E.?]</span></div>
+      <p>[What students do and measure.]</p>
+      <p>[Safety note, if any.]</p>
+      <p class="egg"><strong>Senior high link</strong><br>[The later physics idea it prepares them for.]</p></article>
+  </div>
+
+  <!-- Indigenous connections (Strand A) -->
+  <h3>Indigenous connections</h3>
+  <p class="prose">These connect to <span class="slo g8">SCI.8.A.1</span>. Work through your division's protocols when inviting Elders or Knowledge Keepers; the Manitoba First Nations Education Resource Centre (MFNERC) is a good starting point.</p>
+  <div class="acts">
+   <article class="act k-ind blank"><span class="kind"><i></i>Indigenous connection</span>
+      <h4>[Connection title]</h4><div><span class="slo g8">[SCI.8.E.?]</span></div>
+      <p>[The knowledge or technology, and the physics in it.]</p>
+      <p class="ask">[A question that links it to the outcome.]</p></article>
+    <article class="act k-ind blank"><span class="kind"><i></i>Indigenous connection</span>
+      <h4>[Connection title]</h4><div><span class="slo g8">[SCI.8.E.?]</span></div>
+      <p>[The knowledge or technology, and the physics in it.]</p>
+      <p class="ask">[A question that links it to the outcome.]</p></article>
+  </div>
+
+  <!-- Fair test: each dt is a step of the scientific method, FILL IN THE BLANKS -->
+  <h3>The scientific method: a fair test</h3>
+  <p class="prose">FILL IN EXAMPLE HERE <span class="slo g8">SLO NEEDED HERE</span> FILL IN BLANKS</p>
+  <dl class="fair">
+    <dt>Question</dt><dd>QUESTION?</dd>
+    <dt>Hypothesis</dt><dd>HYPOTHESIS</dd>
+    <dt>Change</dt><dd>INDEPENDENT VARIABLE</dd>
+    <dt>Measure</dt><dd>DEPENDENT VARIABLE</dd>
+    <dt>Keep the same</dt><dd>CONTROLLED VARIABLES</dd>
+    <dt>Conclude</dt><dd>COMPARE RESULTS WITH HYPOTHESIS</dd>
+  </dl>
+
+  <!-- Critical thinking -->
+  <h3>Critical thinking</h3>
+  <div class="acts">
+    <article class="act k-ct blank"><span class="kind"><i></i>Critical thinking</span>
+      <h4>[Activity title]</h4><div><span class="slo g8">[SCI.8.E.?]</span></div>
+      <p>[The claim, problem or question students reason about.]</p>
+      <p class="ask">[The follow-up question that pushes their thinking.]</p></article>
+  </div>
+
+  <h3>Physics hiding in other Grade 8 outcomes</h3>
+  <ul class="tight">
+    <li><b>[FILL IN CONTENT]</b> <span class="slo g8">SLO</span>: [FILL IN CONTENT]</li>
+    <li><b>[FILL IN CONTENT]</b> <span class="slo g8">SLO</span>: [FILL IN CONTENT]</li>
+  </ul>
+  <h3>Watch for</h3>
+  <ul class="tight">
+    <li>"[FILL IN CONTENT]" Challenge it with [FILL IN CONTENT]</li>
+    <li>"[FILL IN CONTENT]" Challenge it with [FILL IN CONTENT]</li>
+  </ul>
+  <div class="mod-foot"><span class="mod-meta">Next: Looking Ahead</span><button class="mark" data-mod="m3" aria-pressed="false">Mark module 3 done</button></div>
+</section>
 
 <!-- =================================================== MODULE 4: Looking Ahead ================================================================-->
 
