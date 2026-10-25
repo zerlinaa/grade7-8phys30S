@@ -24,59 +24,35 @@ nothing breaks.
  <link rel=""preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel=""stylesheet">
 <style>
-/* --------------------------------Colours, fonts, and sizes--------------------------------------------------
-Change a colour here and it changes everywhere it is used. 
-Same palette as our Physics 40S slides: graph-paper beige,
-charcoal ink, yellow highlights. */
+
+/* ---------- colours and fonts: change one here, it changes everywhere ---------- */
 :root{
-    --paper: #E3DDD3;
-    --grid: #D2CBBF;
-    --sheet: #FAF8F4;
-    --sheet-2: #F1ECE4; 
-    --ink: #292B27;
-    --ink-soft: #55574F; 
-    --rule: #C9C1B4; 
-    --yellow:#F2C94C;                   /*used AI to find specific colour palette */
-    --yellow-soft:#FBEDBF;
-    --blue:#2F55B8;
-    --blue-soft:#DCE4F7;
-    --red:#A8382C;
-    --red-soft:#F5DEDA;
-    --green:#2F7D5B;
-    --green-soft:#D9EDE3;
-    --mid: #C77A1E;                     /* middle years on the path */
-    --sr: #2F55B8;                      /* Science 9-10 */
-    --spec: #292B27;                    /* Physics 40S */
-    --head: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; 
-    --body: "Source Serif 4", Georgia, "Times New Roman", serif; 
-    --radius-lg: 18px;
-    --radius-sm: 8px; 
+  --paper:#E3DDD3; --grid:#D2CBBF; --sheet:#FAF8F4; --sheet-2:#F1ECE4;
+  --ink:#292B27; --ink-soft:#55574F; --rule:#C9C1B4;
+  --yellow:#F2C94C; --yellow-soft:#FBEDBF; --blue:#2F55B8; --blue-soft:#DCE4F7;
+  --red:#A8382C; --green:#2F7D5B; --mid:#C77A1E;
+  --head:"Poppins",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --body:"Source Serif 4",Georgia,"Times New Roman",serif;
 }
 /* ---------------------------------- base page ----------------------------------------------- */
-*{box-sizing: border-box} 
-html{scroll-behavior: smooth; scroll-padding-top: 20px} 
-
-body{
-    margin: 0; color: var(--ink); font-family:var(--body); font-size: 18px; line-height: 1.6; 
-    background-image:
-        linear-gradient(var(--grid) 1.5px, transparent 1.5px), 
-        linear-gradient(90deg, var(--gride) 1.5px, transparent 1.5px);
-    background-size:44px 44px;
-}
-a{color: var(--blue); text-underline-offset: 3px}
-a:hover{text-decoration-thickness: 2px}
-:focus-visible{outline: 3px solid var(--blue); outline-offset:3px; border-radius:4px}
-h1,h2,h3,h4{font-family:var(--head); line-height:1.2; margin:0; color:var(--ink)}
-h2{font-size:clamp(28px,3.4vw,38px); font-weight:700; letter-spacing:-.01em}
-h3{font-size:22px; font-weight:600; margin-top:40px; margin-bottom:12px}
-h4{font-size:18px; font-weight:600}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:20px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{margin:0;color:var(--ink);font-family:var(--body);font-size:18px;line-height:1.6;background-color:var(--paper);
+  background-image:linear-gradient(var(--grid) 1.5px,transparent 1.5px),linear-gradient(90deg,var(--grid) 1.5px,transparent 1.5px);
+  background-size:44px 44px}
+a{color:var(--blue);text-underline-offset:3px}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:4px}
+h1,h2,h3,h4{font-family:var(--head);line-height:1.2;margin:0}
+h2{font-size:clamp(28px,3.4vw,38px);font-weight:700;letter-spacing:-.01em}
+h3{font-size:22px;font-weight:600;margin:38px 0 12px}
+h4{font-size:18px;font-weight:600}
 p{margin:0 0 14px}
-/* hidden link that keyboard users can use to jump past the menu */
-.skip{position:absolute; left:-999px;top:8px; background:var(--ink); color:#fff; padding:8px 14px; border-radius:6px; z-index:10}
+.skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:#fff;padding:8px 14px;border-radius:6px;z-index:10}
 .skip:focus{left:12px}
 
 /* --------------------------------- layout ---------------------------------------------------
-          Two columns: the module menu (250px) */ 
+Two columns: the module menu (250px) - Consulted with AI for layout and specific CSS code for website */ 
 .shell{display:grid; grid-template-columns:250px minmax(0,1fr); gap:40px; max-width:1240px; margin:0 auto; padding:0 28px}
 /* the menu stays in place while the page scrolls */
 nav.rail{position:sticky; top:0; height:100vh; padding:28px 0; overflow:auto}
@@ -126,35 +102,86 @@ main{padding:28px 0 80px; min-width:0}
 .howto div{border-top:3px solid var(--ink); padding-top:12px; font-size:16px}
 .howto strong{font-family:var(--head); font-size:15px; display:block;margin-bottom:4px}
 
-/* -------------------------------------------------------------- reusable bits ----------------------------------------------------------------- AI was used to help format tables and how the SLOs look */
-/* outcome code chips; colour shows the grade band */
-.slo{display:inline-block;font-family:var(--head);font-size:12.5px;font-weight:600;padding:2px 9px;border-radius:99px;background:var(--sheet-2);border:1px solid var(--rule);color:var(--ink);white-space:nowrap;margin:2px 4px 2px 0;text-decoration:none}
-.slo.g7,.slo.g8{background:#F6E2C6;border-color:#E4C095}
-.slo.g9,.slo.g10{background:var(--blue-soft);border-color:#B7C6EC}
-.slo.s30,.slo.s40{background:var(--ink);border-color:var(--ink);color:#fff}
-/* ★ marks a major outcome */
-.star{color:#B8860B;font-family:var(--head)}
-/* yellow call-out box */
-.note{background:var(--yellow-soft);border-radius:var(--radius-sm);padding:16px 20px;font-size:16.5px;margin:18px 0}
-.note strong{font-family:var(--head);font-size:15px}
-.callout-red{background:var(--red-soft)}
-/* tables: charcoal header row, light stripes on every other row */
+/* ---------- small reusable pieces ---------- */
+.slo{display:inline-block;font-family:var(--head);font-size:12.5px;font-weight:600;padding:2px 9px;border-radius:99px;background:var(--sheet-2);border:1px solid var(--rule);white-space:nowrap;margin:2px 4px 2px 0}
+.slo.g7,.slo.g8{background:#F6E2C6;border-color:#E4C095}   /* Grades 7-8: orange */
+.slo.g9,.slo.g10{background:var(--blue-soft);border-color:#B7C6EC} /* Science 9-10: blue */
+.slo.s30,.slo.s40{background:var(--ink);border-color:var(--ink);color:#fff} /* Physics 30S-40S: black */
+.star{color:#B8860B;font-family:var(--head)}                /* ★ = major outcome */
 table{border-collapse:collapse;width:100%;font-size:16px}
 th,td{text-align:left;vertical-align:top;padding:12px 14px;border-bottom:1px solid var(--rule)}
 th{font-family:var(--head);font-size:14px;font-weight:600;background:var(--ink);color:#fff}
 th:first-child{border-top-left-radius:10px}th:last-child{border-top-right-radius:10px}
-tbody tr:nth-child(even) td{background:rgba(241,236,228,.6)}
 .tablewrap{overflow-x:auto;margin:16px 0 8px}
 
-/* ---------- responsive ---------- */
- 
+ /* "Major themes" boxes; .major gets the gold border */
+.themes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:18px 0 8px}
+.theme{border:2px solid var(--ink);border-radius:14px;padding:18px 20px;background:#fff}
+.theme.major{border-color:#B8860B;background:#FFFBEE}
+.theme p{font-size:16px;margin:8px 0 0}
 
-footer{font-family:var(--head);font-size:14px;color:var(--ink-soft);padding:8px 0 40px}
-footer p{margin:0 0 6px}
+/* click-to-open full outcome wording */
+details.outcomes{margin:18px 0;border:1px solid var(--rule);border-radius:12px;background:#fff}
+details.outcomes>summary{cursor:pointer;font-family:var(--head);font-weight:600;font-size:16px;padding:14px 18px;list-style:none}
+details.outcomes>summary::-webkit-details-marker{display:none}
+details.outcomes>summary::before{content:"+";display:inline-block;width:22px;font-weight:700}
+details.outcomes[open]>summary::before{content:"–"}
+dl.olist{margin:0;padding:4px 18px 14px}
+dl.olist div{display:grid;grid-template-columns:118px 1fr;gap:12px;padding:10px 0;border-top:1px solid var(--sheet-2);font-size:16px}
+dl.olist dt{font-family:var(--head);font-weight:600;font-size:14px}
+dl.olist dd{margin:0}
+.inc{display:block;color:var(--ink-soft);font-size:15px;margin-top:3px}
 
-/* ------------------------------------------------------------------------------ print ----------------------------------------------------------------
-   Printing hides the menu and buttons, opens every outcome list,
-   and starts each module on a new page. */
+/* "The physics in plain words" */
+.bg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 26px}
+.bg div{font-size:16.5px}
+.bg h4{font-size:16px;margin-bottom:4px}
+
+/* activity cards; .kind = coloured tag, .ask = question to pose, .egg = senior high link */
+.acts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:10px}
+.act{background:#fff;border-radius:14px;padding:20px 22px;border:1px solid var(--rule);display:flex;flex-direction:column}
+.act .kind{font-family:var(--head);font-size:13px;font-weight:600;display:inline-flex;gap:6px;align-items:center;margin-bottom:8px}
+.act .kind i{width:10px;height:10px;border-radius:3px;display:inline-block}
+.k-demo i{background:var(--yellow)} .k-lab i{background:var(--blue)} .k-ind i{background:var(--green)} .k-ct i{background:var(--red)}
+.act h4{margin-bottom:8px}
+.act p{font-size:16px}
+.act .ask{border-left:3px solid var(--yellow);padding-left:12px;font-style:italic}
+.act .egg{margin-top:auto;padding-top:12px;font-size:15px;border-top:1px dashed var(--rule)}
+.act .egg strong{font-family:var(--head);font-size:13.5px}
+/* blank template cards: dashed outline and grey placeholder text until filled in */
+.act.blank{background:transparent;border:2px dashed var(--rule)}
+.act.blank h4,.act.blank p{color:var(--ink-soft)}
+
+/* fair-test (scientific method) table */
+.fair{display:grid;grid-template-columns:150px 1fr;border:2px solid var(--ink);border-radius:14px;overflow:hidden;background:#fff;margin-top:12px}
+.fair dt,.fair dd{padding:12px 16px;margin:0;border-bottom:1px solid var(--rule);font-size:16px}
+.fair dt{font-family:var(--head);font-weight:600;font-size:14.5px;background:var(--sheet-2)}
+.fair dt:last-of-type,.fair dd:last-of-type{border-bottom:0}
+.fair.blank dd{color:var(--ink-soft)}
+
+/* short lists ("hidden physics", "watch for", easter eggs) */
+ul.tight{padding-left:22px;margin:8px 0}
+ul.tight li{margin-bottom:8px;font-size:16.5px}
+
+/* ---------- tablets and phones: menu becomes a top bar, everything stacks ---------- */
+@media (max-width:980px){
+  .shell{grid-template-columns:1fr;gap:0;padding:0 16px}
+  nav.rail{height:auto;z-index:5;background:var(--paper);padding:10px 0;border-bottom:1px solid var(--rule)}
+  .rail-title,.rail-sub,.progress,.rail .mins{display:none}
+  .rail ol{display:flex;overflow-x:auto;gap:6px}
+  .rail li a{grid-template-columns:22px auto;white-space:nowrap;font-size:13.5px;padding:6px 10px;background:var(--sheet)}
+  html{scroll-padding-top:70px}
+}
+@media (max-width:760px){
+  body{font-size:17px}
+  .sheet{padding:26px 18px;border-radius:14px}
+  .hero,.themes,.bg,.acts{grid-template-columns:1fr}
+  dl.olist div,.fair{grid-template-columns:1fr}
+  dl.olist div{gap:2px}
+  .fair dt{border-bottom:0;padding-bottom:4px}
+}
+
+/* ---------- printing: hide menu and buttons, one module per page ---------- */
 @media print{
   body{background:#fff;font-size:12pt}
   .shell{display:block;padding:0}
@@ -164,6 +191,9 @@ footer p{margin:0 0 6px}
   details.outcomes>summary{display:none}
   .act,.theme,tr{break-inside:avoid}
 }
+
+footer{font-family:var(--head);font-size:14px;color:var(--ink-soft);padding:8px 0 40px}
+footer p{margin:0 0 6px}
 
 </style>
     </head>
