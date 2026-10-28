@@ -229,8 +229,8 @@ footer p{margin:0 0 6px}
 <section class="sheet" id="start">
   <div class="hero">
     <div>
-      <h1>Physics Starts in Grade 7 and 8</h1>
-      <p class="lede">Every Physics 40S student was once in a middle years classroom. This guide walks you through the physics in Manitoba's renewed Grade 7 and 8 science outcomes, with demos, labs and activities that build the foundations senior high physics relies on.</p>
+      <h1>Physics in the Middle Years</h1>
+      <p class="lede">[Fill in content]</p>
       <p class="who">For middle years teachers at any comfort level with physics. About 30 minutes. <span class="star">★</span> marks the outcomes that matter most.</p>
     </div>
     <!-- The chart: one curved line plus a dot and label per course. To move a label, change its x and y. -->
@@ -530,12 +530,44 @@ footer p{margin:0 0 6px}
 </section>
 
 <!-- =================================================== MODULE 4: Looking Ahead ================================================================-->
+<section class="sheet" id="m4" aria-labelledby="m4h">
+  <div class="mod-head"><h2 id="m4h">4. Looking ahead</h2><span class="mod-meta">4 minutes</span></div>
+  <p class="lede prose">What you teach in Grades 7 and 8 shows up again in the renewed Science 9 and 10, then in Physics 30S and 40S.</p>
 
+  <h3>Into Science 9 and 10</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>From Grades 7–8</th><th>Grows into</th><th>Spark curiosity</th></tr></thead>
+    <tbody>
+      <tr><td>[FILL IN CONTENT] <span class="slo g7">[slos go here]</span></td><td>[FILL IN CONTENT] <span class="slo g9">[Slos go here]</span></td><td>[FILL IN CONTENT]</td></tr>
+      <tr><td>[FILL IN CONTENT] <span class="slo g7">[slos go here]</span></td><td>[FILL IN CONTENT] <span class="slo g9">[Slos go here]</span></td><td>[FILL IN CONTENT]</td></tr>
+      <tr><td>[FILL IN CONTENT] <span class="slo g8">[slos go here]</span></td><td>[FILL IN CONTENT] <span class="slo g10">[Slos go here]</span></td><td>[FILL IN CONTENT]</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Easter eggs for Physics 30S and 40S</h3>
+  <p class="prose">[not sure what to put here, maybe some phrases or activities to hint at future concepts]</p>
+  <ul class="tight">
+    <li><q>[fill in content here]</q> <span class="slo s30">Physics 30S</span></li>
+    <li><q>[fill in content here]</q> <span class="slo s40">Physics 40S</span></li>
+    <li><q>[fill in content here]</q> <span class="slo s30">Physics 30S</span></li>
+  </ul>
+  <div class="mod-foot"><span class="mod-meta">That's the last module.</span><button class="mark" data-mod="m4" aria-pressed="false">Mark module 4 done</button></div>
+</section>
 
 <!-- =================================================== Sources ================================================================-->
-
-
-
+<section class="sheet" id="sources" aria-labelledby="srch">
+  <div class="mod-head"><h2 id="srch">Sources</h2></div>
+  <div class="prose">
+    <ul>
+      <li><a href="https://www.edu.gov.mb.ca/k12/framework/english/science/science_gr7.html">Manitoba Framework for Learning: Grade 7 Science</a></li>
+      <li><a href="https://www.edu.gov.mb.ca/k12/framework/english/science/science_gr8.html">Manitoba Framework for Learning: Grade 8 Science</a></li>
+      <li><a href="https://www.edu.gov.mb.ca/k12/framework/english/science/science_gr9.html">Grade 9 Science</a> and <a href="https://www.edu.gov.mb.ca/k12/framework/english/science/science_gr10.html">Grade 10 Science</a></li>
+      <li><a href="https://www.edu.gov.mb.ca/k12/cur/science/index.html">Manitoba Education: Science (renewed K–10 status)</a></li>
+      <li><a href="https://www.edu.gov.mb.ca/k12/cur/science/found/5to8/index.html">Grades 5 to 8 Science: A Foundation for Implementation (the old clusters)</a></li>
+      <li>Anthropic. (2026). <i>Claude</i> (Opus 5.5) [Large language model]. <a href="https://claude.ai">https://claude.ai</a></li>
+    </ul>
+  </div>
+</section>
 
 <!----------------------------------------------------------- Team names and credit line ----------------------------------------------------------------->
 <footer>
@@ -544,18 +576,48 @@ footer p{margin:0 0 6px}
 </footer>
 </div>
 </main>
+<script>
+/* ---------- "Mark module done" buttons and progress bar ----------
+   Saved in this browser only. If the browser blocks saving
+   (e.g. private mode), the page still works; it just won't remember. */
+const MODS = ["m1","m2","m3","m4"];
+let done = {};
+try { done = JSON.parse(localStorage.getItem("phys78-v2")) || {}; } catch (e) {}
 
+function renderProgress(){
+  let n = 0;
+  MODS.forEach(m => {
+    const on = !!done[m]; if (on) n++;
+    const b = document.querySelector('.mark[data-mod="'+m+'"]');
+    b.setAttribute("aria-pressed", on);
+    b.textContent = on ? "Module "+m.slice(1)+" done" : "Mark module "+m.slice(1)+" done";
+    const a = document.querySelector('#modnav a[data-mod="'+m+'"]');
+    a.classList.toggle("done", on);
+    a.querySelector(".dot").textContent = on ? "✓" : m.slice(1);
+  });
+  document.getElementById("progtext").textContent = n+" of 4 modules done";
+  document.getElementById("progbar").style.width = (n/4*100)+"%";
+}
+document.querySelectorAll(".mark[data-mod]").forEach(b => b.addEventListener("click", () => {
+  done[b.dataset.mod] = !done[b.dataset.mod];
+  try { localStorage.setItem("phys78-v2", JSON.stringify(done)); } catch (e) {}
+  renderProgress();
+}));
+renderProgress();
 
+/* ---------- highlight the module on screen in the menu ---------- */
+const links = [...document.querySelectorAll("#modnav a")];
+if ("IntersectionObserver" in window) {
+  const io = new IntersectionObserver(entries => entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    links.forEach(a => {
+      const on = a.getAttribute("href") === "#"+e.target.id;
+      a.classList.toggle("current", on);
+      if (on) a.parentElement.parentElement.scrollTo({left: a.parentElement.offsetLeft - 12, behavior: "smooth"}); /* phones: keep it visible */
+    });
+  }), {rootMargin: "-40% 0px -55% 0px"});
+  links.forEach(a => { const s = document.querySelector(a.getAttribute("href")); if (s) io.observe(s); });
+}
 
-
-
-
-
-</body>
-</html>
-
-
-
-
-
-
+/* ---------- printing: open every outcome list first ---------- */
+window.addEventListener("beforeprint", () => document.querySelectorAll("details").forEach(d => d.open = true));
