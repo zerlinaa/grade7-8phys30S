@@ -1,32 +1,46 @@
 <!doctype html>
 <html lang="en">
-    <head>
+<head>
 <!--
 ============================================================================
-Physics in Grade 7 and 8: PD guide for middle 
-years teachers using Manitoba renewed science 
-curriculum. 
+Physics in Grade 7 and 8: PD guide for middle years teachers using the
+Manitoba renewed science curriculum.
 
-This is one self-contained file. Double-click 
-it to open it in any browser. To share it, 
-upload this same file to any website. Fonts 
-come from Google Fonts when online; offline, 
-the browser uses similar built-in fonts, so 
-nothing breaks. 
+This is one self-contained file. Double-click it to open it in any browser.
+To share it, upload this same file to any website. Fonts come from Google
+Fonts when online; offline, the browser uses similar built-in fonts, so
+nothing breaks.
 
-Consulted with Claude AI for layout and specific CSS code for website. 
+HOW THE GROUP'S WORK IS ORGANIZED
+This guide follows three Physics 40S units: Mechanics, Electricity and
+Medical Physics. Each group member traced one unit back to Grades 7 and 8.
+Every activity card has a coloured tag showing which unit it builds toward:
+   <span class="tag t-mech">Mechanics</span>
+   <span class="tag t-elec">Electricity</span>
+   <span class="tag t-med">Medical physics</span>
+Cards with no tag are general (they support every unit).
 
+TWO PER GRADE, THE REST IN EXTRAS
+Each grade module shows 2 demos, 2 labs, 2 Indigenous connections,
+2 critical thinking cards and 1 fair test. Every other activity lives in
+the Extras section near the bottom (id="extras").
 
+FILLING IN A BLANK CARD
+Blank cards have the word "blank" in their class and show grey text in
+square brackets. Replace the bracketed text, then delete " blank" from the
+class so the card turns white. Idea comments sit just above most blanks.
+
+Consulted with Claude AI for layout and specific CSS code for website.
 =============================================================================
 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Physics in Grades 7 and 8</title> 
-<meta name="description" content="A self-paced professional development guide to the physics outcomes in Manitoba's renewed Grade 7 and 8 science curriculum, and how they lead to Science 9, Science 19, Physics 30S and Physics 40S.">
-<!-- Fonts: Poppins for headings and lavels, Source Serif 4 for reading text -->
- <link rel="preconnect" href="https://fonts.googleapis.com">
- <link rel=""preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel=""stylesheet">
+<title>Physics in Grades 7 and 8</title>
+<meta name="description" content="A self-paced professional development guide to the physics outcomes in Manitoba's renewed Grade 7 and 8 science curriculum, and how they lead to Science 9, Science 10, Physics 30S and Physics 40S.">
+<!-- Fonts: Poppins for headings and labels, Source Serif 4 for reading text -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
 <style>
 
 /* ---------- colours and fonts: change one here, it changes everywhere ---------- */
@@ -35,6 +49,9 @@ Consulted with Claude AI for layout and specific CSS code for website.
   --ink:#292B27; --ink-soft:#55574F; --rule:#C9C1B4;
   --yellow:#F2C94C; --yellow-soft:#FBEDBF; --blue:#2F55B8; --blue-soft:#DCE4F7;
   --red:#A8382C; --green:#2F7D5B; --mid:#C77A1E;
+  /* the four Physics 40S units (tags on cards) */
+  --mech:#5B3F8C; --elec:#A4570F; --med:#9C2F5B;
+  --radius-lg:22px;
   --head:"Poppins",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
   --body:"Source Serif 4",Georgia,"Times New Roman",serif;
 }
@@ -56,7 +73,7 @@ p{margin:0 0 14px}
 .skip:focus{left:12px}
 
 /* --------------------------------- layout ---------------------------------------------------
-Two columns: the module menu (250px) - Consulted with AI for layout and specific CSS code for website */ 
+Two columns: the module menu (250px) and the reading column. Consulted with AI for layout and specific CSS code for website */
 .shell{display:grid; grid-template-columns:250px minmax(0,1fr); gap:40px; max-width:1240px; margin:0 auto; padding:0 28px}
 /* the menu stays in place while the page scrolls */
 nav.rail{position:sticky; top:0; height:100vh; padding:28px 0; overflow:auto}
@@ -74,10 +91,13 @@ nav.rail{position:sticky; top:0; height:100vh; padding:28px 0; overflow:auto}
 .progress{margin-top:22px; font-family:var(--head); font-size:13px; color:var(--ink-soft)}
 .bar{height:8px; background:var(--sheet); border-radius:99px; overflow:hidden; margin-top:6px; border:1px solid var(--rule)}
 .bar span{display:block; height:100%; width:0; background:var(--green); transition:width .3s}
+/* the four unit tags, listed under the menu as a key */
+.rail-key{margin-top:22px; font-family:var(--head); font-size:12.5px; color:var(--ink-soft)}
+.rail-key .tag{margin:4px 4px 0 0}
 main{padding:28px 0 80px; min-width:0}
 
-/* --------------------------------------------------------------------- sheet -------------------------------------------------------------------------------
-   Each module sits on a white "sheet" laid over the graph paper. */
+/* --------------------------------- sheet ---------------------------------
+   Each module sits on a "sheet" laid over the graph paper. */
 .sheet{background:var(--sheet); border-radius:var(--radius-lg); padding:44px 52px; margin-bottom:36px; box-shadow:0 1px 0 var(--rule)}
 .prose{max-width:720px}
 .lede{font-size:20px; line-height:1.55; color:var(--ink)}
@@ -90,41 +110,49 @@ main{padding:28px 0 80px; min-width:0}
 .mod-foot{margin-top:34px; padding-top:20px; border-top:1px solid var(--rule); display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; align-items:center}
 .mod-foot .mark{font-size:15px; padding:10px 20px}
 
-/* ---------------------------------------------------------- hero (the Start here section) -------------------------------------------------------------------------------- */
+/* --------------------------------- hero (the Start here section) --------------------------------- */
 .hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:40px; align-items:center; padding:52px 52px 44px}
 .hero h1{font-size:clamp(40px,5.4vw,66px); font-weight:700; letter-spacing:-.025em; line-height:1.02; margin-bottom:22px}
 .hero .who{font-family:var(--head); font-size:15px; color:var(--ink-soft); margin-top:20px}
 /* the rising path chart: the line draws itself once, then the dots appear */
+.arc{margin:0}
 .arc svg{width:100%; height:auto; display:block}
 .arc .path{stroke-dasharray:1200; stroke-dashoffset:1200; animation:draw 2.2s .3s ease-out forwards}
 .arc .pt{opacity:0; animation:pop .35s ease-out forwards}
 @keyframes draw{to{stroke-dashoffset:0}}
 @keyframes pop{to{opacity:1}}
 @media (prefers-reduced-motion:reduce){.arc .path{stroke-dashoffset:0}.arc .pt{opacity:1}}
-/* the three "how to use this guide" tips */
-.howto{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; margin-top:8px}
-.howto div{border-top:3px solid var(--ink); padding-top:12px; font-size:16px}
-.howto strong{font-family:var(--head); font-size:15px; display:block;margin-bottom:4px}
 
 /* ---------- small reusable pieces ---------- */
 .slo{display:inline-block;font-family:var(--head);font-size:12.5px;font-weight:600;padding:2px 9px;border-radius:99px;background:var(--sheet-2);border:1px solid var(--rule);white-space:nowrap;margin:2px 4px 2px 0}
+/* no grade class = Kindergarten to Grade 6: grey */
 .slo.g7,.slo.g8{background:#F6E2C6;border-color:#E4C095}   /* Grades 7-8: orange */
 .slo.g9,.slo.g10{background:var(--blue-soft);border-color:#B7C6EC} /* Science 9-10: blue */
 .slo.s30,.slo.s40{background:var(--ink);border-color:var(--ink);color:#fff} /* Physics 30S-40S: black */
 .star{color:#B8860B;font-family:var(--head)}                /* ★ = major outcome */
+/* unit tags: which Physics 40S unit a card builds toward */
+.tag{display:inline-block;font-family:var(--head);font-size:11.5px;font-weight:600;letter-spacing:.02em;padding:2px 9px;border-radius:99px;color:#fff;white-space:nowrap;vertical-align:middle}
+.t-mech{background:var(--mech)} .t-elec{background:var(--elec)} .t-med{background:var(--med)}
 table{border-collapse:collapse;width:100%;font-size:16px}
 th,td{text-align:left;vertical-align:top;padding:12px 14px;border-bottom:1px solid var(--rule)}
 th{font-family:var(--head);font-size:14px;font-weight:600;background:var(--ink);color:#fff}
 th:first-child{border-top-left-radius:10px}th:last-child{border-top-right-radius:10px}
 .tablewrap{overflow-x:auto;margin:16px 0 8px}
 
- /* "Major themes" boxes; .major gets the gold border */
+/* "Major themes" boxes; .major gets the gold border */
 .themes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:18px 0 8px}
 .theme{border:2px solid var(--ink);border-radius:14px;padding:18px 20px;background:#fff}
 .theme.major{border-color:#B8860B;background:#FFFBEE}
 .theme p{font-size:16px;margin:8px 0 0}
+/* "Four threads" boxes in Module 1: coloured top edge per unit */
+.theme.u{border-width:0 0 0 0;border-top:6px solid}
+.theme.u.t-mech{border-color:var(--mech);background:#fff}
+.theme.u.t-elec{border-color:var(--elec);background:#fff}.theme.u.t-med{border-color:var(--med);background:#fff}
+/* an odd last box in a two-column grid stretches full width */
+.themes>:last-child:nth-child(odd),.threads>:last-child:nth-child(odd){grid-column:1/-1}
+.theme.u h4 .unit{display:block;font-size:12.5px;font-weight:600;color:var(--ink-soft);margin-top:2px}
 
-/* click-to-open full outcome wording */
+/* click-to-open panels (full outcome wording, extra activities) */
 details.outcomes{margin:18px 0;border:1px solid var(--rule);border-radius:12px;background:#fff}
 details.outcomes>summary{cursor:pointer;font-family:var(--head);font-weight:600;font-size:16px;padding:14px 18px;list-style:none}
 details.outcomes>summary::-webkit-details-marker{display:none}
@@ -135,6 +163,11 @@ dl.olist div{display:grid;grid-template-columns:118px 1fr;gap:12px;padding:10px 
 dl.olist dt{font-family:var(--head);font-weight:600;font-size:14px}
 dl.olist dd{margin:0}
 .inc{display:block;color:var(--ink-soft);font-size:15px;margin-top:3px}
+/* Extras section: a plain list of extra activities, grouped by grade */
+.more>div{border-top:1px solid var(--rule);padding:14px 0 4px}
+.more h4{font-size:16.5px;margin-bottom:6px}
+.more h4 .tag{margin-right:6px}
+.more p{font-size:16px;margin-bottom:6px}
 
 /* "The physics in plain words" */
 .bg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 26px}
@@ -144,11 +177,17 @@ dl.olist dd{margin:0}
 /* activity cards; .kind = coloured tag, .ask = question to pose, .egg = senior high link */
 .acts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:10px}
 .act{background:#fff;border-radius:14px;padding:20px 22px;border:1px solid var(--rule);display:flex;flex-direction:column}
-.act .kind{font-family:var(--head);font-size:13px;font-weight:600;display:inline-flex;gap:6px;align-items:center;margin-bottom:8px}
+.act .top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:8px}
+.act .kind{font-family:var(--head);font-size:13px;font-weight:600;display:inline-flex;gap:6px;align-items:center}
 .act .kind i{width:10px;height:10px;border-radius:3px;display:inline-block}
 .k-demo i{background:var(--yellow)} .k-lab i{background:var(--blue)} .k-ind i{background:var(--green)} .k-ct i{background:var(--red)}
 .act h4{margin-bottom:8px}
 .act p{font-size:16px}
+.act ul{padding-left:20px;margin:0 0 12px;font-size:15.5px}
+.act ul li{margin-bottom:4px}
+.act .conn{font-size:14px;font-style:italic;color:var(--ink-soft);margin:6px 0 10px}
+.act .safe{font-size:14.5px;color:var(--ink-soft)}
+.act .safe b{font-family:var(--head);font-size:13px;color:var(--ink)}
 .act .ask{border-left:3px solid var(--yellow);padding-left:12px;font-style:italic}
 .act .egg{margin-top:auto;padding-top:12px;font-size:15px;border-top:1px dashed var(--rule)}
 .act .egg strong{font-family:var(--head);font-size:13.5px}
@@ -163,15 +202,27 @@ dl.olist dd{margin:0}
 .fair dt:last-of-type,.fair dd:last-of-type{border-bottom:0}
 .fair.blank dd{color:var(--ink-soft)}
 
-/* short lists ("hidden physics", "watch for", easter eggs) */
+/* short lists ("hidden physics", "watch for") */
 ul.tight{padding-left:22px;margin:8px 0}
 ul.tight li{margin-bottom:8px;font-size:16.5px}
+
+/* Module 4: one card per Physics 40S unit */
+.threads{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:14px}
+.tc{background:#fff;border-radius:14px;border:1px solid var(--rule);border-top:6px solid;padding:18px 20px}
+.tc.t-mech{border-top-color:var(--mech)}.tc.t-elec{border-top-color:var(--elec)}.tc.t-med{border-top-color:var(--med)}
+.tc.t-mech,.tc.t-elec,.tc.t-med{background:#fff}  /* keep the card white, not the tag colour */
+.tc h4{margin-bottom:10px}
+.tc dl{margin:0}
+.tc dt{font-family:var(--head);font-size:13px;font-weight:600;color:var(--ink-soft);margin-top:10px}
+.tc dd{margin:2px 0 0;font-size:15.5px}
+.tc .eggq{margin:14px 0 0;padding-top:12px;border-top:1px dashed var(--rule);font-size:15.5px;font-style:italic}
+.tc .eggq strong{font-family:var(--head);font-style:normal;font-size:13px}
 
 /* ---------- tablets and phones: menu becomes a top bar, everything stacks ---------- */
 @media (max-width:980px){
   .shell{grid-template-columns:1fr;gap:0;padding:0 16px}
   nav.rail{height:auto;z-index:5;background:var(--paper);padding:10px 0;border-bottom:1px solid var(--rule)}
-  .rail-title,.rail-sub,.progress,.rail .mins{display:none}
+  .rail-title,.rail-sub,.progress,.rail .mins,.rail-key{display:none}
   .rail ol{display:flex;overflow-x:auto;gap:6px}
   .rail li a{grid-template-columns:22px auto;white-space:nowrap;font-size:13.5px;padding:6px 10px;background:var(--sheet)}
   html{scroll-padding-top:70px}
@@ -179,7 +230,8 @@ ul.tight li{margin-bottom:8px;font-size:16.5px}
 @media (max-width:760px){
   body{font-size:17px}
   .sheet{padding:26px 18px;border-radius:14px}
-  .hero,.themes,.bg,.acts{grid-template-columns:1fr}
+  .hero{padding:30px 18px 26px}
+  .hero,.themes,.bg,.acts,.threads{grid-template-columns:1fr}
   dl.olist div,.fair{grid-template-columns:1fr}
   dl.olist div{gap:2px}
   .fair dt{border-bottom:0;padding-bottom:4px}
@@ -193,14 +245,15 @@ ul.tight li{margin-bottom:8px;font-size:16.5px}
   .sheet{padding:0;margin:0 0 18pt;page-break-before:always}
   #start{page-break-before:avoid}
   details.outcomes>summary{display:none}
-  .act,.theme,tr{break-inside:avoid}
+  .act,.theme,.tc,tr{break-inside:avoid}
+  .tag{-webkit-print-color-adjust:exact;print-color-adjust:exact}
 }
 
 footer{font-family:var(--head);font-size:14px;color:var(--ink-soft);padding:8px 0 40px}
 footer p{margin:0 0 6px}
 
 </style>
-    </head>
+</head>
 <body>
 <a class="skip" href="#start">Skip to content</a>
 <div class="shell">
@@ -213,24 +266,29 @@ footer p{margin:0 0 6px}
   <div class="rail-sub">A 30-minute guide for middle years teachers</div>
   <ol id="modnav">
     <li><a href="#start"><span class="dot">✓</span><span>Start here</span></a></li>
-    <li><a href="#m1" data-mod="m1"><span class="dot">1</span><span>What changed<span class="mins">3 min</span></span></a></li>
-    <li><a href="#m2" data-mod="m2"><span class="dot">2</span><span>Grade 7 physics<span class="mins">11 min</span></span></a></li>
-    <li><a href="#m3" data-mod="m3"><span class="dot">3</span><span>Grade 8 physics<span class="mins">11 min</span></span></a></li>
-    <li><a href="#m4" data-mod="m4"><span class="dot">4</span><span>Looking ahead<span class="mins">4 min</span></span></a></li>
+    <li><a href="#m1" data-mod="m1"><span class="dot">1</span><span>What changed<span class="mins">4 min</span></span></a></li>
+    <li><a href="#m2" data-mod="m2"><span class="dot">2</span><span>Grade 7 physics<span class="mins">10 min</span></span></a></li>
+    <li><a href="#m3" data-mod="m3"><span class="dot">3</span><span>Grade 8 physics<span class="mins">10 min</span></span></a></li>
+    <li><a href="#m4" data-mod="m4"><span class="dot">4</span><span>Looking ahead<span class="mins">6 min</span></span></a></li>
+    <li><a href="#extras"><span class="dot">+</span><span>Extras<span class="mins">optional</span></span></a></li>
     <li><a href="#sources"><span class="dot">§</span><span>Sources</span></a></li>
   </ol>
   <div class="progress" aria-live="polite"><span id="progtext">0 of 4 modules done</span><div class="bar"><span id="progbar"></span></div></div>
+  <!-- key for the coloured unit tags -->
+  <div class="rail-key">Physics 40S unit tags<br>
+    <span class="tag t-mech">Mechanics</span><span class="tag t-elec">Electricity</span><span class="tag t-med">Medical physics</span>
+  </div>
 </nav>
 
 <main id="main">
 
 <!-- ======================================================================= START HERE =====================================================================================
-     Title, intro, the rising path chart (an SVG drawing), and three tips. -->
+     Title, intro, and the rising path chart (an SVG drawing). -->
 <section class="sheet" id="start">
   <div class="hero">
     <div>
       <h1>Physics in the Middle Years</h1>
-      <p class="lede">[Fill in content]</p>
+      <p class="lede">Every Physics 40S student was once in a middle years classroom. This guide walks you through the physics in Manitoba's renewed Grade 7 and 8 science outcomes, and shows how each one leads to Physics 40S mechanics, electricity and medical physics.</p>
       <p class="who">For middle years teachers at any comfort level with physics. About 30 minutes. <span class="star">★</span> marks the outcomes that matter most.</p>
     </div>
     <!-- The chart: one curved line plus a dot and label per course. To move a label, change its x and y. -->
@@ -256,9 +314,9 @@ footer p{margin:0 0 6px}
 </section>
 
 <!-- =================================================== MODULE 1: What changed? ================================================================
-     Strand table, then the old-cluster to renewed-outcome map. -->
+     Strand table, the four Physics 40S units, then the old-cluster map. -->
 <section class="sheet" id="m1" aria-labelledby="m1h">
-  <div class="mod-head"><h2 id="m1h">1. What changed</h2><span class="mod-meta">3 minutes</span></div>
+  <div class="mod-head"><h2 id="m1h">1. What changed</h2><span class="mod-meta">4 minutes</span></div>
   <div class="prose">
     <p class="lede">The renewed Kindergarten to Grade 10 science curriculum replaces the old cluster units with five strands that run all year. Physics no longer lives in one unit; it shows up across the year as gravity, energy, particles and light.</p>
     <p>The renewed documents were posted for voluntary implementation in 2025–26, with a provincial rollout announced for fall 2026. Check your division's timeline.</p>
@@ -268,20 +326,33 @@ footer p{margin:0 0 6px}
     <tbody>
       <tr><td>A. Indigenous Knowledge Systems</td><td>First Nations, Métis and Inuit ways of observing and creating technologies (SCI.7.A.1, SCI.8.A.1).</td></tr>
       <tr><td>B. Science Identity</td><td>Students seeing themselves as people who do science.</td></tr>
-      <tr><td>C. Practical Science</td><td>Measurement in SI units. Grade 7 measurement includes newtons (N), joules (J) and m/s.</td></tr>
+      <tr><td>C. Practical Science</td><td>Measurement in SI units, and taking action on science and society issues such as energy use and radiation exposure (SCI.7.C.1, SCI.8.C.1).</td></tr>
       <tr><td>D. Nature of Science</td><td>Predictions, fair tests, variables and models: the scientific method.</td></tr>
       <tr><td>E. Scientific Knowledge</td><td>The content outcomes, covered in Modules 2 and 3.</td></tr>
     </tbody>
   </table></div>
+
+  <!-- The Physics 40S units this guide follows. Each group member owns one. -->
+  <h3>Three threads to Physics 40S</h3>
+  <p class="prose">This guide follows three Physics 40S units. Every activity carries a tag for the unit it builds toward.</p>
+  <div class="themes">
+    <div class="theme u t-mech"><h4>Mechanics<span class="unit">Physics 40S Unit 1</span></h4><p>Motion, forces, momentum, projectiles, circular motion, work and energy.</p><p><b>Before Grade 7:</b> balanced forces, speed and inertia (Grade 3), friction and simple machines (Grade 5), Earth's gravity, normal force and buoyancy (Grade 6). Grade 7 adds weight in newtons.</p></div>
+    <div class="theme u t-elec"><h4>Electricity<span class="unit">Physics 40S Unit 3</span></h4><p>Electric circuits and electromagnetic induction.</p><p><b>Before Grade 7:</b> battery-powered circuits and electrical safety (Grade 6). Grades 7 and 8 build energy transfer and solar energy; circuits return in Grade 9.</p></div>
+    <div class="theme u t-med"><h4>Medical physics<span class="unit">Physics 40S Unit 4</span></h4><p>Radioactive decay, radiation and the body, imaging and treatment.</p><p><b>Before Grade 7:</b> light as energy that travels and is reflected, absorbed or transmitted (Grade 4). Grade 7 adds thermal radiation, Grade 8 the electromagnetic spectrum.</p></div>
+  </div>
+  <!-- K-6 outcome codes behind the "Before Grade 7" lines: SCI.3.E.4-E.11, SCI.5.E.5-E.8,
+       SCI.6.E.1-E.3 (forces); SCI.6.E.6-E.7 (circuits); SCI.4.E.1-E.5 (light and sound) -->
+
   <h3>If you taught the old clusters</h3>
   <div class="tablewrap"><table>
     <thead><tr><th>Old cluster</th><th>Where its physics is now</th></tr></thead>
     <tbody>
-      <tr><td>Grade 6: The Solar System</td><td>Mass versus weight, rotation, seasons and Moon phases move up to Grade 7 <span class="slo g7">SCI.7.E.5</span><span class="slo g7">SCI.7.E.12–E.16</span>. Universal gravity, orbits and tides <span class="slo g7">SCI.7.E.4</span><span class="slo g7">SCI.7.E.6</span><span class="slo g7">SCI.7.E.7</span> are new.</td></tr>
+      <tr><td>Grade 6: Electricity</td><td>Stays in Grade 6, now framed as energy moving through battery-powered circuits, plus electrical safety <span class="slo">SCI.6.E.6</span><span class="slo">SCI.6.E.7</span>. Grades 7 and 8 have no circuit outcomes; circuits return in Grade 9 <span class="slo g9">SCI.9.E.10</span>.</td></tr>
+      <tr><td>Grade 6: The Solar System</td><td>Rotation, seasons, Moon phases and the Sun stay in Grade 6 <span class="slo">SCI.6.E.8–E.11</span>, which now also introduces Earth's gravity <span class="slo">SCI.6.E.1</span>. Mass versus weight moves to Grade 7 <span class="slo g7">SCI.7.E.5</span>. Gravity as a universal force, its role in orbits, and tides are Grade 7 <span class="slo g7">SCI.7.E.4</span><span class="slo g7">SCI.7.E.6</span><span class="slo g7">SCI.7.E.7</span>, and the Solar System returns there too <span class="slo g7">SCI.7.E.12–E.16</span>.</td></tr>
       <tr><td>Grade 7: Particle Theory of Matter</td><td>Heat, temperature and heat transfer stay in Grade 7, now framed as energy transfer <span class="slo g7">SCI.7.E.1–E.3</span><span class="slo g7">SCI.7.E.8–E.11</span>.</td></tr>
-      <tr><td>Grade 7: Forces and Structures</td><td>No direct equivalent. Structures, internal and external forces, and centre of gravity don't appear in the renewed Grade 7 outcomes.</td></tr>
-      <tr><td>Grade 8: Fluids</td><td>Density, viscosity and pressure–temperature stay <span class="slo g8">SCI.8.E.1–E.5</span>. Pressure as force over area moves to Grade 10 <span class="slo g10">SCI.10.E.8</span>. Hydraulics and pneumatics no longer appear.</td></tr>
-      <tr><td>Grade 8: Optics</td><td>The electromagnetic spectrum stays, now through solar radiation <span class="slo g8">SCI.8.E.7–E.9</span>. Reflection, refraction, lenses and colour mixing no longer appear.</td></tr>
+      <tr><td>Grade 7: Forces and Structures</td><td>Moves down. Structures, strength and stability are now Grade 3 <span class="slo">SCI.3.E.1–E.3</span>, along with balanced and unbalanced forces <span class="slo">SCI.3.E.7</span>. Centre of gravity isn't named in any grade.</td></tr>
+      <tr><td>Grade 8: Fluids</td><td>Density, viscosity and pressure–temperature stay <span class="slo g8">SCI.8.E.1–E.5</span>. Buoyancy moves down to Grade 6 <span class="slo">SCI.6.E.3</span>, and pressure as force over area moves up to Grade 10 <span class="slo g10">SCI.10.E.8</span>. Hydraulics and pneumatics aren't named.</td></tr>
+      <tr><td>Grade 8: Optics</td><td>The electromagnetic spectrum stays, now through solar radiation <span class="slo g8">SCI.8.E.7–E.9</span>. Reflection, absorption and transmission move down to Grade 4 <span class="slo">SCI.4.E.2</span>. Refraction, lenses and colour mixing aren't named.</td></tr>
     </tbody>
   </table></div>
   <div class="mod-foot"><span class="mod-meta">Next: Grade 7 physics</span><button class="mark" data-mod="m1" aria-pressed="false">Mark module 1 done</button></div>
@@ -289,9 +360,9 @@ footer p{margin:0 0 6px}
 
 <!-- =================================================== MODULE 2: Grade 7 ==================================================
      Order: themes, outcomes, plain words, demos, labs, Indigenous,
-     fair test, critical thinking, hidden physics, watch for. -->
+     fair test, critical thinking, extra activities, hidden physics, watch for. -->
 <section class="sheet" id="m2" aria-labelledby="m2h">
-  <div class="mod-head"><h2 id="m2h">2. Grade 7 physics</h2><span class="mod-meta">11 minutes</span></div>
+  <div class="mod-head"><h2 id="m2h">2. Grade 7 physics</h2><span class="mod-meta">10 minutes</span></div>
   <p class="lede prose">Grade 7 physics is about invisible influences: gravity pulling across empty space, and energy moving from place to place, mostly as heat.</p>
 
   <h3>Major themes</h3>
@@ -318,11 +389,12 @@ footer p{margin:0 0 6px}
       <div><dt>SCI.7.E.10</dt><dd>Demonstrate the understanding that many phenomena can be understood in terms of energy exchanges.</dd></div>
       <div><dt><span class="star">★</span> SCI.7.E.11</dt><dd>Demonstrate the understanding that when energy is transferred from a store, it can make things happen, and energy is ultimately dissipated to the environment as heat in the process.<span class="inc">Include: efficiency.</span></dd></div>
       <div><dt>SCI.7.E.12–E.16</dt><dd>The scale and structure of the Solar System; apparent motion of the Sun, Moon and stars caused by Earth's rotation; motion of planets against background stars; human space exploration; the astronomical significance of latitude and longitude (including seasons).</dd></div>
+      <div><dt>SCI.7.C.1</dt><dd>Take class, group or personal action on a local, provincial, Canadian or global STSE (science, technology, society and the environment) issue.<span class="inc">Examples include assessing how daylight hours influence energy use, and evaluating the environmental impacts of energy sources used in Manitoba.</span></dd></div>
       <div><dt>SCI.7.C.2</dt><dd>Measure using the appropriate techniques, tools, and units.<span class="inc">Physics-related items include spring scale, speed (km/h, m/s), force (N) and energy (J).</span></dd></div>
     </dl>
   </details>
 
-    <h3>The physics in plain words</h3>
+  <h3>The physics in plain words</h3>
   <div class="bg">
     <div><h4>Mass is not weight</h4>Mass (kg) is how much matter something has. Weight (N) is gravity's pull on it: about 9.8 N per kilogram on Earth, 1.6 N on the Moon.</div>
     <div><h4>An orbit is a fall that misses</h4>A satellite falls toward Earth the whole time, but moves sideways so fast that the ground curves away beneath it. Gravity never switches off in space.</div>
@@ -330,73 +402,90 @@ footer p{margin:0 0 6px}
     <div><h4>Energy is never used up</h4>Energy moves between stores (motion, height, warmth, a stretched spring) and some always ends up as heat. Efficiency is the useful share.</div>
   </div>
 
-  <!-- Demonstrations: two blank cards to fill in -->
+  <!-- Demonstrations: Mechanics and Electricity -->
   <h3>Demonstrations</h3>
   <div class="acts">
-    <article class="act k-demo blank"><span class="kind"><i></i>Demonstration</span>
-      <h4>[Demonstration title]</h4><div><span class="slo g7">[SCI.7.E.?]</span></div>
-      <p>[What you do, in two or three sentences.]</p>
-      <p class="ask">[The question to ask students.]</p>
-      <p class="egg"><strong>Senior high link</strong><br>[The later physics idea it prepares them for.]</p></article>
-    <article class="act k-demo blank"><span class="kind"><i></i>Demonstration</span>
-      <h4>[Demonstration title]</h4><div><span class="slo g7">[SCI.7.E.?]</span></div>
-      <p>[What you do, in two or three sentences.]</p>
-      <p class="ask">[The question to ask students.]</p>
-      <p class="egg"><strong>Senior high link</strong><br>[The later physics idea it prepares them for.]</p></article>
+    <article class="act k-demo"><div class="top"><span class="kind"><i></i>Demonstration</span><span class="tag t-mech">Mechanics</span></div>
+      <h4>The drop race</h4><div><span class="slo g7">SCI.7.E.4</span><span class="slo g7">SCI.7.E.5</span></div>
+      <p>Drop a tennis ball and a heavier ball from the same height after students predict. They land together. Repeat with a flat and a crumpled sheet of paper.</p>
+      <p class="ask">Why did the heavy and light balls land together, but the flat paper didn't?</p>
+      <p class="egg"><strong>Senior high link</strong><br>All objects fall at the same rate without air resistance: free fall in Physics 30S, and projectile motion in Physics 40S.</p></article>
+
+    <article class="act k-demo"><div class="top"><span class="kind"><i></i>Demonstration</span><span class="tag t-elec">Electricity</span></div>
+      <h4>Where does electricity show up in our day?</h4><div><span class="slo g7">SCI.7.E.11</span><span class="slo g7">SCI.7.C.1</span></div>
+      <p class="conn">A foundational connection; Grade 7 has no circuit outcomes. Students built battery circuits in Grade 6 (SCI.6.E.6).</p>
+      <p>Show everyday devices such as a lamp, phone charger, kettle and fan, or pictures of them.</p>
+      <ul>
+        <li>Students classify each useful output as light, sound, movement or heating.</li>
+        <li>As a class, find where some energy goes to the surroundings as heat.</li>
+        <li>Discuss one practical way to cut unnecessary energy use.</li>
+      </ul>
+      <p class="ask">If two devices do different jobs, how could we compare their energy use fairly?</p>
+      <p class="safe"><b>Safety:</b> Pictures or unplugged devices only; don't open appliances or handle exposed wiring.</p>
+      <p class="egg"><strong>Senior high link</strong><br>Grade 9 investigates electrical power and energy use directly; Physics 40S calculates it with P = IV.</p></article>
   </div>
 
-  <!-- Labs: need 2 examples, just blank cards for now -->
+  <!-- Labs -->
   <h3>Labs</h3>
   <div class="acts">
-    <article class="act k-lab blank"><span class="kind"><i></i>Lab</span>
-      <h4>[Lab title]</h4><div><span class="slo g7">[SCI.7.E.?]</span></div>
-      <p>[What students do and measure.]</p>
-      <p>[Safety note, if any.]</p>
-      <p class="egg"><strong>Senior high link</strong><br>[The later physics idea it prepares them for.]</p></article>
-    <article class="act k-lab blank"><span class="kind"><i></i>Lab</span>
-      <h4>[Lab title]</h4><div><span class="slo g7">[SCI.7.E.?]</span></div>
-      <p>[What students do and measure.]</p>
-      <p>[Safety note, if any.]</p>
-      <p class="egg"><strong>Senior high link</strong><br>[The later physics idea it prepares them for.]</p></article>
+    <article class="act k-lab"><div class="top"><span class="kind"><i></i>Lab</span><span class="tag t-mech">Mechanics</span></div>
+      <h4>Weight versus mass</h4><div><span class="slo g7">SCI.7.E.5</span><span class="slo g7">SCI.7.C.2</span></div>
+      <p>Groups hang known masses from a spring scale reading in newtons, then graph weight against mass. The slope comes out near 9.8 N per kg. Extension: find each weight on the Moon (1.6 N/kg).</p>
+      <p class="egg"><strong>Senior high link</strong><br>That slope is g. Physics 40S uses it in every force problem (F = mg).</p></article>
+
+    <article class="act k-lab"><div class="top"><span class="kind"><i></i>Lab</span><span class="tag t-elec">Electricity</span></div>
+      <h4>Energy-use audit of the classroom</h4><div><span class="slo g7">SCI.7.C.1</span><span class="slo g7">SCI.7.E.11</span></div>
+      <p>Students record the electrical devices in one classroom and classify their purpose and likely energy output.</p>
+      <ul>
+        <li>Build a table: device, purpose, when it's used, ways to reduce unnecessary use.</li>
+        <li>Choose one realistic change and explain how it could help.</li>
+      </ul>
+      <p class="ask">Which recommendation is realistic, safe, and likely to make a difference?</p>
+      <p class="safe"><b>Safety:</b> Observe only. Don't switch off devices or open electrical panels without permission.</p>
+      <p class="egg"><strong>Senior high link</strong><br>Grade 9 follows electricity from the generating station to the classroom <span class="slo g9">SCI.9.E.12–E.13</span>.</p></article>
   </div>
 
   <!-- Indigenous connections (Strand A) -->
   <h3>Indigenous connections</h3>
-  <p class="prose">These connect to <span class="slo g7">SCI.7.A.1</span>. Work through your division's protocols when inviting Elders or Knowledge Keepers; the Manitoba First Nations Education Resource Centre (MFNERC) is a good starting point.</p>
+  <p class="prose">These connect to <span class="slo g7">SCI.7.A.1</span>. Work through your division's protocols when inviting Elders or Knowledge Keepers; the Manitoba First Nations Education Resource Centre (MFNERC) is a good starting point. Don't present First Nations, Métis and Inuit perspectives as a single viewpoint.</p>
   <div class="acts">
-   <article class="act k-ind blank"><span class="kind"><i></i>Indigenous connection</span>
-      <h4>[Connection title]</h4><div><span class="slo g7">[SCI.7.E.?]</span></div>
-      <p>[The knowledge or technology, and the physics in it.]</p>
-      <p class="ask">[A question that links it to the outcome.]</p></article>
-    <article class="act k-ind blank"><span class="kind"><i></i>Indigenous connection</span>
-      <h4>[Connection title]</h4><div><span class="slo g7">[SCI.7.E.?]</span></div>
-      <p>[The knowledge or technology, and the physics in it.]</p>
-      <p class="ask">[A question that links it to the outcome.]</p></article>
+    <article class="act k-ind"><div class="top"><span class="kind"><i></i>Indigenous connection</span><span class="tag t-mech">Mechanics</span></div>
+      <h4>The bow as an energy store</h4><div><span class="slo g7">SCI.7.A.1</span><span class="slo g7">SCI.7.E.11</span></div>
+      <p>Drawing a bow does work on it, storing energy in the bent wood. When the string is released, that energy moves to the arrow as motion, and a little ends up as sound and heat. Invite a local Knowledge Keeper or bowmaker and let them decide what to share.</p>
+      <p class="ask">Where does the energy in a flying arrow come from, and where does it end up?</p>
+      <p class="safe"><b>Safety:</b> No strung bow and arrows in class without division approval; a video or an unstrung bow works.</p>
+      <p class="egg"><strong>Senior high link</strong><br>Work and energy in Physics 40S: the work done drawing the bow becomes the arrow's kinetic energy, and its flight is projectile motion.</p></article>
+    <article class="act k-ind"><div class="top"><span class="kind"><i></i>Indigenous connection</span><span class="tag t-elec">Electricity</span></div>
+      <h4>Energy choices in our community</h4><div><span class="slo g7">SCI.7.A.1</span><span class="slo g7">SCI.7.C.1</span></div>
+      <p>Students investigate energy use and energy choices in their local community, including the benefits and impacts of different sources. If Indigenous knowledge is part of the lesson, work with a local Knowledge Keeper, Elder or community partner and follow their guidance on what may be shared.</p></article>
   </div>
 
-  <!-- Fair test: each dt is a step of the scientific method, FILL IN THE BLANKS -->
+  <!-- Fair test: each dt is a step of the scientific method, each dd the example -->
   <h3>The scientific method: a fair test</h3>
-  <p class="prose">FILL IN EXAMPLE HERE <span class="slo g7">SLO NEEDED HERE</span> FILL IN BLANKS</p>
+  <p class="prose">An insulation challenge (keep an ice cube frozen for 30 minutes) makes <span class="slo g7">SCI.7.D.2</span> concrete.</p>
   <dl class="fair">
-    <dt>Question</dt><dd>QUESTION?</dd>
-    <dt>Hypothesis</dt><dd>HYPOTHESIS</dd>
-    <dt>Change</dt><dd>INDEPENDENT VARIABLE</dd>
-    <dt>Measure</dt><dd>DEPENDENT VARIABLE</dd>
-    <dt>Keep the same</dt><dd>CONTROLLED VARIABLES</dd>
-    <dt>Conclude</dt><dd>COMPARE RESULTS WITH HYPOTHESIS</dd>
+    <dt>Question</dt><dd>Which material keeps an ice cube frozen the longest?</dd>
+    <dt>Hypothesis</dt><dd>If we wrap the cup in wool, less ice will melt, because wool traps air and air conducts heat poorly.</dd>
+    <dt>Change</dt><dd>The wrapping material (independent variable).</dd>
+    <dt>Measure</dt><dd>Mass of meltwater after 30 minutes (dependent variable).</dd>
+    <dt>Keep the same</dt><dd>Ice cube size, cup, time, where the cups sit (controlled variables).</dd>
+    <dt>Conclude</dt><dd>Compare with the hypothesis and name sources of error.</dd>
   </dl>
 
   <!-- Critical thinking -->
   <h3>Critical thinking</h3>
   <div class="acts">
-    <article class="act k-ct blank"><span class="kind"><i></i>Critical thinking</span>
-      <!-- Idea: claim-evidence-reasoning on "Astronauts float because there's no gravity in space."
-           (At the space station's height gravity is still about 90% as strong; they are falling.)
-           SCI.7.E.4, E.6 -->
-      <h4>[Activity title]</h4><div><span class="slo g7">[SCI.7.E.?]</span></div>
-      <p>[The claim, problem or question students reason about.]</p>
-      <p class="ask">[The follow-up question that pushes their thinking.]</p></article>
+    <article class="act k-ct"><div class="top"><span class="kind"><i></i>Critical thinking</span><span class="tag t-elec">Electricity</span></div>
+      <h4>Is using less electricity always better?</h4><div><span class="slo g7">SCI.7.C.1</span></div>
+      <p>After the energy audit, students test their own recommendations against real needs: lighting for safety, devices some students need for access, and heat in a Manitoba winter.</p>
+      <p class="ask">Is reducing electricity use always the best option, or do safety, accessibility and the needs of a classroom matter too?</p></article>
+    <article class="act k-ct"><div class="top"><span class="kind"><i></i>Critical thinking</span><span class="tag t-mech">Mechanics</span></div>
+      <h4>Does a bathroom scale measure mass?</h4><div><span class="slo g7">SCI.7.E.5</span></div>
+      <p>The scale shows kilograms, so it must measure mass. Students test the claim with evidence: the scale squeezes a spring, which responds to force, and on the Moon it would show about one-sixth the reading.</p>
+      <p class="ask">If you stood on the scale in an elevator that starts moving up, would the reading change? Why?</p>
+      <p class="egg"><strong>Senior high link</strong><br>Students named the normal force in Grade 6 (SCI.6.E.2). In Physics 40S dynamics, a scale reads that normal force, which changes when an elevator speeds up or slows down.</p></article>
   </div>
+  <p class="prose" style="margin-top:14px"><a href="#extras">More Grade 7 activities are in Extras.</a></p>
 
   <h3>Physics hiding in other Grade 7 outcomes</h3>
   <ul class="tight">
@@ -407,21 +496,23 @@ footer p{margin:0 0 6px}
   <ul class="tight">
     <li>"Heavier objects fall faster." Challenge it with the drop race.</li>
     <li>"There's no gravity in space." Challenge it with orbits as falling.</li>
+    <li><span class="tag t-med">Medical physics</span> "Radiation means something radioactive." In Grade 7, radiation is heat from the Sun or a campfire travelling as electromagnetic waves. The ionizing radiation used in medicine comes in Physics 40S. That difference makes a great curiosity question.</li>
   </ul>
   <div class="mod-foot"><span class="mod-meta">Next: Grade 8 physics</span><button class="mark" data-mod="m2" aria-pressed="false">Mark module 2 done</button></div>
 </section>
 
-<!-- =================================================== MODULE 3: Grade 8 (repetition from grade 7 mod)================================================================-->
+<!-- =================================================== MODULE 3: Grade 8 ================================================================
+     Same order as Module 2. -->
 <section class="sheet" id="m3" aria-labelledby="m3h">
-  <div class="mod-head"><h2 id="m3h">3. Grade 8 physics</h2><span class="mod-meta">11 minutes</span></div>
-  <p class="lede prose">Grade 8 physics [FILL IN CONTENT].</p>
+  <div class="mod-head"><h2 id="m3h">3. Grade 8 physics</h2><span class="mod-meta">10 minutes</span></div>
+  <p class="lede prose">Grade 8 physics asks how the particles in a material decide how it behaves, and how the Sun's energy reaches Earth as electromagnetic radiation and what it does when it arrives.</p>
 
   <h3>Major themes</h3>
   <div class="themes">
-    <div class="theme major"><h4><span class="star">★</span> [FILL IN CONTENT]</h4><span class="slo g8">[SLO]</span><span class="slo g8">[SLO]</span><span class="slo g8">[SLO]</span><p>[fill in content]</p></div>
-    <div class="theme major"><h4><span class="star">★</span> [FILL IN CONTENT]</h4><span class="slo g8">[SLO]</span><span class="slo g8">[SLO]</span><span class="slo g8">[SLO]</span><p>[fill in content]</p></div>
-    <div class="theme major"><h4><span class="star">★</span> [FILL IN CONTENT]</h4><span class="slo g8">[SLO]</span><span class="slo g8">[SLO]</span><span class="slo g8">[SLO]</span><p>[fill in content]</p></div>
-    <div class="theme major"><h4><span class="star">★</span> [FILL IN CONTENT]</h4><span class="slo g8">[SLO]</span><span class="slo g8">[SLO]</span><span class="slo g8">[SLO]</span><p>[fill in content]</p></div>
+    <div class="theme major"><h4><span class="star">★</span> Density and the particle model</h4><span class="slo g8">SCI.8.E.1</span><span class="slo g8">SCI.8.E.2</span><p>d = m/V is many students' first formula to rearrange. Warm fluids are less dense, so they rise.</p></div>
+    <div class="theme"><h4>Fluids and pressure</h4><span class="slo g8">SCI.8.E.3–E.5</span><p>Viscosity, and how temperature, volume and pressure are linked.</p></div>
+    <div class="theme major"><h4><span class="star">★</span> The electromagnetic spectrum</h4><span class="slo g8">SCI.8.E.8</span><span class="slo g8">SCI.8.E.9</span><p>Visible light is one slice of a spectrum from radio waves to X-rays. Its applications, from solar cells to medical X-rays, lead to two Physics 40S units.</p></div>
+    <div class="theme major"><h4><span class="star">★</span> Earth's energy budget</h4><span class="slo g8">SCI.8.E.7</span><span class="slo g8">SCI.8.E.13</span><span class="slo g8">SCI.8.E.15</span><span class="slo g8">SCI.8.E.17</span><p>Sunlight is absorbed or reflected (albedo) and eventually radiates back to space.</p></div>
   </div>
 
   <!-- Full official wording; opens when clicked (and automatically when printing) -->
@@ -435,123 +526,198 @@ footer p{margin:0 0 6px}
       <div><dt>SCI.8.E.5</dt><dd>Demonstrate an understanding of how the nature of attractions between particles in a substance dictate how much energy is required to cause their temperatures and phases to change.</dd></div>
       <div><dt><span class="star">★</span> SCI.8.E.7</dt><dd>Demonstrate the understanding that energy from the Sun travels through empty space to Earth, where it is absorbed or reflected by the atmosphere, hydrosphere, and lithosphere.<span class="inc">Include: radiation, electromagnetic waves, solar spectrum, albedo.</span></dd></div>
       <div><dt>SCI.8.E.8</dt><dd>Demonstrate an understanding of the nature of solar radiation.<span class="inc">Include: electromagnetic waves, visible light, solar spectrum.</span></dd></div>
-      <div><dt><span class="star">★</span> SCI.8.E.9</dt><dd>Demonstrate an understanding of various types of electromagnetic radiation with respect to relative energy, frequency, wavelength, and applications.</dd></div>
+      <div><dt><span class="star">★</span> SCI.8.E.9</dt><dd>Demonstrate an understanding of various types of electromagnetic radiation with respect to relative energy, frequency, wavelength, and applications.<span class="inc">Examples include photosynthesis, X-rays, microwaves, radio, infrared, ultraviolet, sun safety and cell mutation.</span></dd></div>
       <div><dt>SCI.8.E.13</dt><dd>Demonstrate the understanding that solar energy heats the surface of Earth.</dd></div>
       <div><dt>SCI.8.E.15</dt><dd>Demonstrate a basic understanding that all energy arriving at Earth from the Sun eventually radiates back into space.</dd></div>
       <div><dt>SCI.8.E.17</dt><dd>Demonstrate an understanding of the mechanisms of the greenhouse effect in raising temperatures on Earth.</dd></div>
+      <div><dt>SCI.8.C.1</dt><dd>Take class, group or personal action on a local, provincial, Canadian or global STSE (science, technology, society and the environment) issue.<span class="inc">Examples include assessing how exposure to different forms of electromagnetic radiation affects daily life.</span></dd></div>
       <div><dt>SCI.8.C.2</dt><dd>Measure using appropriate tools, units and techniques.<span class="inc">Includes barometers, spectrometers, density, and pressure (Pa, kPa).</span></dd></div>
     </dl>
   </details>
 
-    <h3>The physics in plain words</h3>
+  <h3>The physics in plain words</h3>
   <div class="bg">
-    <div><h4>[FILL IN CONTENT]</h4>[FILL IN CONTENT]</div>
-    <div><h4>[FILL IN CONTENT]</h4>[FILL IN CONTENT]</div>
-    <div><h4>[FILL IN CONTENT]</h4>[FILL IN CONTENT]</div>
-    <div><h4>[FILL IN CONTENT]</h4>[FILL IN CONTENT]</div>
+    <div><h4>Density decides floating</h4>Water is 1.00 g/cm³ and ice about 0.92 g/cm³, so ice floats. Things float when their overall density is less than the fluid's, not because they are "light".</div>
+    <div><h4>Pressure is particles hitting walls</h4>Heat a gas in a closed space and its particles hit the walls harder and more often, so pressure rises.</div>
+    <div><h4>One spectrum, many names</h4>Radio, microwave, infrared, visible, ultraviolet, X-ray and gamma are all electromagnetic waves. Toward gamma: shorter wavelength, higher frequency, more energy.</div>
+    <div><h4>Albedo</h4>The share of sunlight a surface reflects. Fresh snow reflects most of it; open water and dark soil absorb most of it and warm up.</div>
   </div>
 
-  <!-- Demonstrations: two blank cards to fill in -->
+  <!-- Demonstrations: Electricity and Mechanics -->
   <h3>Demonstrations</h3>
   <div class="acts">
-    <article class="act k-demo blank"><span class="kind"><i></i>Demonstration</span>
-      <h4>[Demonstration title]</h4><div><span class="slo g8">[SCI.8.E.?]</span></div>
-      <p>[What you do, in two or three sentences.]</p>
-      <p class="ask">[The question to ask students.]</p>
-      <p class="egg"><strong>Senior high link</strong><br>[The later physics idea it prepares them for.]</p></article>
-    <article class="act k-demo blank"><span class="kind"><i></i>Demonstration</span>
-      <h4>[Demonstration title]</h4><div><span class="slo g8">[SCI.8.E.?]</span></div>
-      <p>[What you do, in two or three sentences.]</p>
-      <p class="ask">[The question to ask students.]</p>
-      <p class="egg"><strong>Senior high link</strong><br>[The later physics idea it prepares them for.]</p></article>
+    <article class="act k-demo"><div class="top"><span class="kind"><i></i>Demonstration</span><span class="tag t-elec">Electricity</span></div>
+      <h4>Can light power a circuit?</h4><div><span class="slo g8">SCI.8.E.7</span><span class="slo g8">SCI.8.E.8</span></div>
+      <p class="conn">A solar-energy connection; the circuit reviews Grade 6 battery circuits (SCI.6.E.6).</p>
+      <p>Connect a small solar cell to a low-voltage motor or buzzer. Compare its output in sunlight, in shade and under a lamp. Students sketch the setup and name the energy input and output.</p>
+      <p class="ask">What does the solar cell need to power the device? Is it creating energy, or converting it?</p>
+      <p class="safe"><b>Safety:</b> Never connect the solar cell to household wiring or mains electricity.</p>
+      <p class="egg"><strong>Senior high link</strong><br>Grade 9 introduces current, voltage, resistance and circuits as outcomes <span class="slo g9">SCI.9.E.10</span>.</p></article>
+
+    <article class="act k-demo"><div class="top"><span class="kind"><i></i>Demonstration</span><span class="tag t-mech">Mechanics</span></div>
+      <h4>The Cartesian diver</h4><div><span class="slo g8">SCI.8.E.1</span><span class="slo g8">SCI.8.E.4</span></div>
+      <p>Float a medicine dropper (or a ketchup packet) in a full, capped 2 L bottle of water. Squeeze the bottle and the diver sinks; let go and it rises. A gentle squeeze makes it hover.</p>
+      <p class="ask">Nothing touched the diver. What changed that made it sink?</p>
+      <p>Squeezing compresses the air bubble inside the dropper, so the diver's overall density rises above the water's. Students met buoyancy as a force opposing gravity in Grade 6 (SCI.6.E.2, E.3).</p>
+      <p class="egg"><strong>Senior high link</strong><br>When the diver hovers, the forces balance: free-body diagrams and Newton's first law in Science 10 <span class="slo g10">SCI.10.E.7</span> and Physics 40S dynamics.</p></article>
   </div>
 
-  <!-- Labs: need 2 examples, just blank cards for now -->
+  <!-- Labs: Medical physics (group doc) and Mechanics -->
   <h3>Labs</h3>
   <div class="acts">
-    <article class="act k-lab blank"><span class="kind"><i></i>Lab</span>
-      <h4>[Lab title]</h4><div><span class="slo g8">[SCI.8.E.?]</span></div>
-      <p>[What students do and measure.]</p>
-      <p>[Safety note, if any.]</p>
-      <p class="egg"><strong>Senior high link</strong><br>[The later physics idea it prepares them for.]</p></article>
-    <article class="act k-lab blank"><span class="kind"><i></i>Lab</span>
-      <h4>[Lab title]</h4><div><span class="slo g8">[SCI.8.E.?]</span></div>
-      <p>[What students do and measure.]</p>
-      <p>[Safety note, if any.]</p>
-      <p class="egg"><strong>Senior high link</strong><br>[The later physics idea it prepares them for.]</p></article>
+    <article class="act k-lab"><div class="top"><span class="kind"><i></i>Lab</span><span class="tag t-med">Medical physics</span></div>
+      <h4>Sorting the electromagnetic spectrum</h4><div><span class="slo g8">SCI.8.E.8</span><span class="slo g8">SCI.8.E.9</span></div>
+      <p>Students match types of radiation to technologies: radio, microwave ovens, infrared thermometers, visible light, UV protection and medical X-rays. They order the types by wavelength and compare their relative frequencies and energies.</p>
+      <p class="ask">X-rays pass through soft tissue more easily than through bone. How could a doctor use that?</p>
+      <p class="egg"><strong>Senior high link</strong><br>Physics 40S medical physics: diagnostic imaging, and ionizing versus non-ionizing radiation.</p></article>
+
+    <article class="act k-lab"><div class="top"><span class="kind"><i></i>Lab</span><span class="tag t-mech">Mechanics</span></div>
+      <h4>Density from a graph</h4><div><span class="slo g8">SCI.8.E.1</span><span class="slo g8">SCI.8.C.2</span></div>
+      <p>Groups measure the mass and volume (by water displacement) of several different-sized pieces of one material, such as modelling clay or aluminum, and graph mass against volume. The slope is the density. A second material gives a different slope.</p>
+      <p class="safe"><b>Safety:</b> Wipe up spills right away; handle glass graduated cylinders with care.</p>
+      <p class="egg"><strong>Senior high link</strong><br>Physics 40S reads meaning from slopes: the slope of a position–time graph is velocity, and of a velocity–time graph, acceleration.</p></article>
   </div>
 
   <!-- Indigenous connections (Strand A) -->
   <h3>Indigenous connections</h3>
-  <p class="prose">These connect to <span class="slo g8">SCI.8.A.1</span>. Work through your division's protocols when inviting Elders or Knowledge Keepers; the Manitoba First Nations Education Resource Centre (MFNERC) is a good starting point.</p>
+  <p class="prose">These connect to <span class="slo g8">SCI.8.A.1</span>. If a Knowledge Keeper or community member visits, ask what they're comfortable sharing, acknowledge the source, and never invent a traditional teaching.</p>
   <div class="acts">
-   <article class="act k-ind blank"><span class="kind"><i></i>Indigenous connection</span>
-      <h4>[Connection title]</h4><div><span class="slo g8">[SCI.8.E.?]</span></div>
-      <p>[The knowledge or technology, and the physics in it.]</p>
-      <p class="ask">[A question that links it to the outcome.]</p></article>
-    <article class="act k-ind blank"><span class="kind"><i></i>Indigenous connection</span>
-      <h4>[Connection title]</h4><div><span class="slo g8">[SCI.8.E.?]</span></div>
-      <p>[The knowledge or technology, and the physics in it.]</p>
-      <p class="ask">[A question that links it to the outcome.]</p></article>
+    <article class="act k-ind"><div class="top"><span class="kind"><i></i>Indigenous connection</span><span class="tag t-med">Medical physics</span></div>
+      <h4>Sun safety and land-based knowledge</h4><div><span class="slo g8">SCI.8.A.1</span><span class="slo g8">SCI.8.E.9</span></div>
+      <p>With guidance from community members, students explore how environmental observations, seasonal activities and community priorities shape decisions about protecting health outdoors. They create a sun-safety resource that combines scientific evidence with locally relevant information, respecting the community's ownership of any teaching shared.</p></article>
+    <article class="act k-ind"><div class="top"><span class="kind"><i></i>Indigenous connection</span><span class="tag t-elec">Electricity</span></div>
+      <h4>Communities and energy technologies</h4><div><span class="slo g8">SCI.8.A.1</span><span class="slo g8">SCI.8.C.1</span></div>
+      <p>A locally guided discussion of how communities make decisions about energy technologies, land, environmental impacts and community needs.</p>
+      <p class="ask">Who benefits, who may be affected, how are decisions made, and what does responsible consultation look like?</p></article>
   </div>
 
-  <!-- Fair test: each dt is a step of the scientific method, FILL IN THE BLANKS -->
+  <!-- Fair test: the Medical physics UV bead lab -->
   <h3>The scientific method: a fair test</h3>
-  <p class="prose">FILL IN EXAMPLE HERE <span class="slo g8">SLO NEEDED HERE</span> FILL IN BLANKS</p>
+  <p class="prose"><span class="tag t-med">Medical physics</span> Can we protect ourselves from UV radiation? Students compare UV-sensitive beads or cards in sunlight and behind different UV-blocking materials <span class="slo g8">SCI.8.D.2</span><span class="slo g8">SCI.8.C.3</span>.</p>
   <dl class="fair">
-    <dt>Question</dt><dd>QUESTION?</dd>
-    <dt>Hypothesis</dt><dd>HYPOTHESIS</dd>
-    <dt>Change</dt><dd>INDEPENDENT VARIABLE</dd>
-    <dt>Measure</dt><dd>DEPENDENT VARIABLE</dd>
-    <dt>Keep the same</dt><dd>CONTROLLED VARIABLES</dd>
-    <dt>Conclude</dt><dd>COMPARE RESULTS WITH HYPOTHESIS</dd>
+    <dt>Question</dt><dd>Which material reduces the colour change of UV-sensitive beads the most?</dd>
+    <dt>Hypothesis</dt><dd>Materials that block more UV radiation will reduce the beads' colour change.</dd>
+    <dt>Change</dt><dd>The material covering the beads (independent variable).</dd>
+    <dt>Measure</dt><dd>Colour change, using a consistent rating scale or photographs (dependent variable).</dd>
+    <dt>Keep the same</dt><dd>Exposure time, sunlight conditions, and the type of bead or card (controlled variables).</dd>
+    <dt>Conclude</dt><dd>Use the results to make evidence-based sun-safety recommendations and discuss the limitations of the model.</dd>
   </dl>
 
   <!-- Critical thinking -->
   <h3>Critical thinking</h3>
   <div class="acts">
-    <article class="act k-ct blank"><span class="kind"><i></i>Critical thinking</span>
-      <h4>[Activity title]</h4><div><span class="slo g8">[SCI.8.E.?]</span></div>
-      <p>[The claim, problem or question students reason about.]</p>
-      <p class="ask">[The follow-up question that pushes their thinking.]</p></article>
+    <article class="act k-ct"><div class="top"><span class="kind"><i></i>Critical thinking</span><span class="tag t-elec">Electricity</span></div>
+      <h4>Does solar power have no impact?</h4><div><span class="slo g8">SCI.8.C.1</span><span class="slo g8">SCI.8.E.7</span></div>
+      <p>A solar panel produces electricity without burning fuel while it operates. Students weigh manufacturing, materials, land use, storage and end-of-life recycling.</p>
+      <p class="ask">Does that mean solar electricity has no environmental impact?</p></article>
+    <article class="act k-ct"><div class="top"><span class="kind"><i></i>Critical thinking</span><span class="tag t-med">Medical physics</span></div>
+      <h4>Radiation: risks and benefits</h4><div><span class="slo g8">SCI.8.C.1</span><span class="slo g8">SCI.8.E.9</span></div>
+      <p>Students assess how exposure to different kinds of electromagnetic radiation affects daily life, from sun exposure to medical imaging, and draft guidelines for responsible use.</p>
+      <p class="ask">X-rays carry more energy than UV. Why do doctors still use them?</p></article>
   </div>
+
+  <p class="prose" style="margin-top:14px"><a href="#extras">More Grade 8 activities are in Extras.</a></p>
 
   <h3>Physics hiding in other Grade 8 outcomes</h3>
   <ul class="tight">
-    <li><b>[FILL IN CONTENT]</b> <span class="slo g8">SLO</span>: [FILL IN CONTENT]</li>
-    <li><b>[FILL IN CONTENT]</b> <span class="slo g8">SLO</span>: [FILL IN CONTENT]</li>
+    <li><b>Earth's engine is convection</b> <span class="slo g8">SCI.8.E.12</span>: Earth's internal heat drives slow convection in the mantle, which moves tectonic plates.</li>
+    <li><b>The heart is a pump</b> <span class="slo g8">SCI.8.E.23</span>: blood pressure is fluid pressure, the same idea as SCI.8.E.4.</li>
   </ul>
   <h3>Watch for</h3>
   <ul class="tight">
-    <li>"[FILL IN CONTENT]" Challenge it with [FILL IN CONTENT]</li>
-    <li>"[FILL IN CONTENT]" Challenge it with [FILL IN CONTENT]</li>
+    <li>"Things float because they're light." Floating depends on density compared with the fluid.</li>
+    <li>"Light is only what we can see." Visible light is a tiny slice of the spectrum.</li>
+    <li><span class="tag t-elec">Electricity</span> "Solar cells make energy." They convert light energy to electrical energy. Challenge it with the light-powered circuit.</li>
   </ul>
-  <div class="mod-foot"><span class="mod-meta">Next: Looking Ahead</span><button class="mark" data-mod="m3" aria-pressed="false">Mark module 3 done</button></div>
+  <div class="mod-foot"><span class="mod-meta">Next: looking ahead</span><button class="mark" data-mod="m3" aria-pressed="false">Mark module 3 done</button></div>
 </section>
 
-<!-- =================================================== MODULE 4: Looking Ahead ================================================================-->
+<!-- =================================================== MODULE 4: Looking Ahead ================================================================
+     One card per Physics 40S unit: roots in Grades 7-8, Science 9-10, a curiosity
+     activity, what Physics 40S does with it, and one "easter egg" line. -->
 <section class="sheet" id="m4" aria-labelledby="m4h">
-  <div class="mod-head"><h2 id="m4h">4. Looking ahead</h2><span class="mod-meta">4 minutes</span></div>
-  <p class="lede prose">What you teach in Grades 7 and 8 shows up again in the renewed Science 9 and 10, then in Physics 30S and 40S.</p>
+  <div class="mod-head"><h2 id="m4h">4. Looking ahead</h2><span class="mod-meta">6 minutes</span></div>
+  <p class="lede prose">What you teach in Grades 7 and 8 shows up again in the renewed Science 9 and 10, then in Physics 40S. Each card ends with an easter egg: a one-line question that costs nothing now and clicks years later.</p>
 
-  <h3>Into Science 9 and 10</h3>
-  <div class="tablewrap"><table>
-    <thead><tr><th>From Grades 7–8</th><th>Grows into</th><th>Spark curiosity</th></tr></thead>
-    <tbody>
-      <tr><td>[FILL IN CONTENT] <span class="slo g7">[slos go here]</span></td><td>[FILL IN CONTENT] <span class="slo g9">[Slos go here]</span></td><td>[FILL IN CONTENT]</td></tr>
-      <tr><td>[FILL IN CONTENT] <span class="slo g7">[slos go here]</span></td><td>[FILL IN CONTENT] <span class="slo g9">[Slos go here]</span></td><td>[FILL IN CONTENT]</td></tr>
-      <tr><td>[FILL IN CONTENT] <span class="slo g8">[slos go here]</span></td><td>[FILL IN CONTENT] <span class="slo g10">[Slos go here]</span></td><td>[FILL IN CONTENT]</td></tr>
-    </tbody>
-  </table></div>
+  <div class="threads">
+    <article class="tc t-mech"><h4><span class="tag t-mech">Mechanics</span></h4>
+      <dl>
+        <dt>Before Grade 7</dt><dd>Forces, speed and inertia <span class="slo">SCI.3.E.4–E.11</span>; friction and simple machines <span class="slo">SCI.5.E.5–E.8</span>; gravity, normal force and buoyancy <span class="slo">SCI.6.E.1–E.3</span></dd>
+        <dt>Roots in Grades 7–8</dt><dd>Gravity and weight <span class="slo g7">SCI.7.E.4</span><span class="slo g7">SCI.7.E.5</span>; density and pressure <span class="slo g8">SCI.8.E.1</span><span class="slo g8">SCI.8.E.4</span></dd>
+        <dt>Science 9–10</dt><dd>Motion, forces and Newton's laws <span class="slo g10">SCI.10.E.6</span><span class="slo g10">SCI.10.E.7</span>; pressure as force on an area <span class="slo g10">SCI.10.E.8</span></dd>
+        <dt>Spark curiosity</dt><dd>Show a snowshoe beside a boot. Same person, same weight: why does only one sink into deep snow?</dd>
+        <dt>Physics 40S</dt><dd>Kinematics, dynamics, momentum, projectile and circular motion, work and energy.</dd>
+      </dl>
+      <p class="eggq"><strong>Easter egg</strong><br>"The heavy and light balls landed together. What if you threw one sideways at the same moment?"</p></article>
 
-  <h3>Easter eggs for Physics 30S and 40S</h3>
-  <p class="prose">[not sure what to put here, maybe some phrases or activities to hint at future concepts]</p>
-  <ul class="tight">
-    <li><q>[fill in content here]</q> <span class="slo s30">Physics 30S</span></li>
-    <li><q>[fill in content here]</q> <span class="slo s40">Physics 40S</span></li>
-    <li><q>[fill in content here]</q> <span class="slo s30">Physics 30S</span></li>
-  </ul>
+    <article class="tc t-med"><h4><span class="tag t-med">Medical physics</span></h4>
+      <dl>
+        <dt>Before Grade 7</dt><dd>Light as energy that travels and is reflected, absorbed or transmitted <span class="slo">SCI.4.E.1–E.5</span></dd>
+        <dt>Roots in Grades 7–8</dt><dd>Thermal radiation <span class="slo g7">SCI.7.E.8</span><span class="slo g7">SCI.7.E.9</span>; the electromagnetic spectrum and X-rays <span class="slo g8">SCI.8.E.8</span><span class="slo g8">SCI.8.E.9</span><span class="slo g8">SCI.8.C.1</span></dd>
+        <dt>Science 9–10</dt><dd>Atoms, the nucleus and isotopes <span class="slo g9">SCI.9.E.5</span>; the ozone layer and UV <span class="slo g10">SCI.10.E.10</span><span class="slo g10">SCI.10.E.11</span></dd>
+        <dt>Spark curiosity</dt><dd>Students already know X-rays interact with matter. Ask: so what is matter made of?</dd>
+        <dt>Physics 40S</dt><dd>Radioactive decay, half-life, alpha and beta particles, ionizing and non-ionizing radiation, effects on the body, and imaging and treatment.</dd>
+      </dl>
+      <p class="eggq"><strong>Easter egg</strong><br>"How can something we cannot see help doctors look inside the human body?"</p></article>
+
+    <article class="tc t-elec"><h4><span class="tag t-elec">Electricity</span></h4>
+      <dl>
+        <dt>Before Grade 7</dt><dd>Battery-powered circuits and electrical safety <span class="slo">SCI.6.E.6</span><span class="slo">SCI.6.E.7</span></dd>
+        <dt>Roots in Grades 7–8</dt><dd>Energy transfer and efficiency <span class="slo g7">SCI.7.E.8–E.11</span>; solar energy <span class="slo g8">SCI.8.E.7–E.9</span>. Neither grade has circuit outcomes.</dd>
+        <dt>Science 9–10</dt><dd>Grade 9 is the direct link: current, circuits, electromagnetism, generation and safety <span class="slo g9">SCI.9.E.8–E.14</span>. Grade 10 links are indirect <span class="slo g10">SCI.10.E.2</span><span class="slo g10">SCI.10.E.13</span>.</dd>
+        <dt>Spark curiosity</dt><dd>Two bulbs in series: predict what happens when one is removed, test it, then compare with a parallel circuit.</dd>
+        <dt>Physics 40S</dt><dd>Electric circuits (Ohm's law, series and parallel networks, power) and electromagnetic induction (generators, transformers).</dd>
+      </dl>
+      <p class="eggq"><strong>Easter egg</strong><br>"How can a moving magnet produce electricity?"</p></article>
+  </div>
+  <p class="prose" style="margin-top:14px"><a href="#extras">More Science 9–10 connections and senior high activities are in Extras.</a></p>
   <div class="mod-foot"><span class="mod-meta">That's the last module.</span><button class="mark" data-mod="m4" aria-pressed="false">Mark module 4 done</button></div>
+</section>
+
+<!-- =================================================== EXTRAS ================================================================
+     Every activity that didn't make the two-per-grade cut. Optional; not counted as a module.
+     To move one back into a module, rebuild it as a card using the card markup in Module 2. -->
+<section class="sheet" id="extras" aria-labelledby="xh">
+  <div class="mod-head"><h2 id="xh">Extras</h2><span class="mod-meta">Optional</span></div>
+  <p class="lede prose">More activities from our group, for when you want to go further.</p>
+
+  <h3>Grade 7</h3>
+  <div class="more prose">
+    <div><h4><span class="tag t-elec">Electricity</span> Demo: a small solar-powered device</h4>
+      <p>Run a low-voltage motor or buzzer from a small classroom solar cell under a lamp or sunlight, then shade it. Students name the input and output energy and predict how distance or angle will change the output. <i>Does brighter light always produce a larger output? What would we need to control to test this?</i></p></div>
+    <div><h4><span class="tag t-elec">Electricity</span> Lab: testing a small solar cell</h4>
+      <p>Keep the same cell and lamp; change one variable (distance or angle), record the voltage or another teacher-approved output, and repeat trials. Use a multimeter only if students have been trained on it. A bridge activity: solar radiation itself is a Grade 8 outcome.</p></div>
+    <div><h4>Indigenous connection: the iglu as thermal engineering <span class="slo g7">SCI.7.E.9</span></h4>
+      <p>Snow traps air, making it an excellent insulator. The sleeping platform is raised because warm air rises (convection), and the entrance is dug below the floor so cold, dense air stays out. <i>Which kinds of heat transfer does the iglu design control?</i></p></div>
+  </div>
+
+  <h3>Grade 8</h3>
+  <div class="more prose">
+    <div><h4><span class="tag t-elec">Electricity</span> Lab: solar-cell output investigation <span class="slo g8">SCI.8.E.7</span><span class="slo g8">SCI.8.C.3</span></h4>
+      <p>Students change the angle or distance of a small solar cell from a lamp, control the other variables, take at least three readings per condition, graph them, and write a conclusion that refers to the data. Use low-voltage equipment and a teacher-approved light source. Connects solar energy to generating electricity.</p></div>
+    <div><h4><span class="tag t-elec">Electricity</span> Demo: conductors and insulators</h4>
+      <p>With a low-voltage battery and a lamp or LED, leave a gap in a complete circuit and place test materials in it. The test is whether the material completes the electrical path, not whether it is "good" or "bad". <i>Why might a material be a useful insulator in one context and a conductor in another?</i> Reviews Grade 6 circuits and conductors <span class="slo">SCI.6.E.6</span> and bridges to Grade 9 <span class="slo g9">SCI.9.E.10</span>; never use wall outlets.</p></div>
+    <div><h4><span class="tag t-elec">Electricity</span> Lab: build and troubleshoot a simple circuit</h4>
+      <p>Students draw a labelled circuit diagram, build it with a battery pack, wires and a bulb or LED, then introduce one fault at a time (a loose wire, an open switch, a missing connection) and explain its effect. <i>How can a diagram help another person reproduce your circuit?</i> Builds on Grade 6 circuits <span class="slo">SCI.6.E.6</span> and leads to building circuits from schematics in Physics 40S. Avoid short-circuiting the battery.</p></div>
+  </div>
+
+  <h3>Science 9–10 and senior high</h3>
+  <div class="more prose">
+      <div><h4><span class="tag t-med">Medical physics</span> Induced genetic mutations <span class="slo g9">SCI.9.E.19</span></h4>
+        <p>Students have met UV and X-rays in Grade 8. This is the moment to introduce the idea that certain types of radiation can affect biological tissue, which Physics 40S develops into the effects of ionizing and non-ionizing radiation and their use in diagnosis and treatment.</p></div>
+      <div><h4><span class="tag t-med">Medical physics</span> Nuclear fusion and energy from stars <span class="slo g10">SCI.10.E.17</span></h4>
+        <p>Students build a concept map linking nuclear fusion, energy released by stars, solar radiation and the electromagnetic spectrum. Point out that fusion in stars is not the same process as radioactive decay, the heart of Physics 40S medical physics.</p></div>
+      <div><h4><span class="tag t-elec">Electricity</span> How does Manitoba get electricity to our homes? <span class="slo g9">SCI.9.E.12–E.13</span></h4>
+        <p>Trace the path from water behind a dam to a turbine, generator, transmission lines and household devices. Name the energy changes, plus one benefit and one trade-off of hydroelectric generation. Leads to generators and electromagnetic induction in Physics 40S.</p></div>
+      <div><h4><span class="tag t-elec">Electricity</span> Why are copper and other metals used in wires? <span class="slo g10">SCI.10.E.2</span></h4>
+        <p>Compare conductors and insulators and connect material choice to electron arrangement. A conceptual bridge only: current, resistance and circuit calculations belong to Grade 9 and Physics 40S.</p></div>
+      <div><h4><span class="tag t-elec">Electricity</span> What is the full cost of a battery? <span class="slo g10">SCI.10.E.13</span><span class="slo g10">SCI.10.E.22</span></h4>
+        <p>Map the materials, purpose, and impacts from extraction to disposal of one battery-powered technology, then propose one evidence-based improvement such as longer device life or better recycling.</p></div>
+      <div><h4><span class="tag t-elec">Electricity</span> Senior high: design a two-lamp circuit <span class="slo s40">Physics 40S</span></h4>
+        <p>Design a battery circuit where one lamp can be switched off without turning off the other. Draw the schematic, predict current paths, and at the senior level calculate equivalent resistance. <i>What would happen to the other lamp if one failed?</i></p></div>
+      <div><h4><span class="tag t-elec">Electricity</span> Senior high: a moving magnet and a coil <span class="slo s40">Physics 40S</span></h4>
+        <p>Move a bar magnet into and out of a coil connected to a meter (or use an approved simulation). Change the speed and direction and connect the results to generators and changing magnetic flux.</p></div>
+  </div>
 </section>
 
 <!-- =================================================== Sources ================================================================-->
@@ -559,9 +725,11 @@ footer p{margin:0 0 6px}
   <div class="mod-head"><h2 id="srch">Sources</h2></div>
   <div class="prose">
     <ul>
+      <li>Manitoba Framework for Learning, earlier grades: <a href="https://www.edu.gov.mb.ca/k12/framework/english/science/science_gr3.html">Grade 3</a>, <a href="https://www.edu.gov.mb.ca/k12/framework/english/science/science_gr4.html">Grade 4</a>, <a href="https://www.edu.gov.mb.ca/k12/framework/english/science/science_gr5.html">Grade 5</a> and <a href="https://www.edu.gov.mb.ca/k12/framework/english/science/science_gr6.html">Grade 6</a> Science</li>
       <li><a href="https://www.edu.gov.mb.ca/k12/framework/english/science/science_gr7.html">Manitoba Framework for Learning: Grade 7 Science</a></li>
       <li><a href="https://www.edu.gov.mb.ca/k12/framework/english/science/science_gr8.html">Manitoba Framework for Learning: Grade 8 Science</a></li>
       <li><a href="https://www.edu.gov.mb.ca/k12/framework/english/science/science_gr9.html">Grade 9 Science</a> and <a href="https://www.edu.gov.mb.ca/k12/framework/english/science/science_gr10.html">Grade 10 Science</a></li>
+      <li><a href="https://www.edu.gov.mb.ca/k12/cur/science/found/physics40s/full_doc.pdf">Grade 12 Physics (40S): A Foundation for Implementation</a></li>
       <li><a href="https://www.edu.gov.mb.ca/k12/cur/science/index.html">Manitoba Education: Science (renewed K–10 status)</a></li>
       <li><a href="https://www.edu.gov.mb.ca/k12/cur/science/found/5to8/index.html">Grades 5 to 8 Science: A Foundation for Implementation (the old clusters)</a></li>
     </ul>
@@ -570,12 +738,11 @@ footer p{margin:0 0 6px}
 
 <!----------------------------------------------------------- Team names and credit line ----------------------------------------------------------------->
 <footer>
-  <p>Prepared by Zerlina Abhazim, Harshdeep Kaur, Corey Feere, and INSERT NAME HERE for EDUC 4750, University of Winnipeg.</p>
+  <p>Prepared by Zerlina Abhazim, Harshdeep Kaur, Corey Feere, and Charli for EDUC 4750, University of Winnipeg.</p>
   <p>Physics of Grades 7 and 8. Built from the renewed Manitoba science curriculum as posted in 2026. Claude was used for layout design for the webpage.</p>
 </footer>
-</div>
 </main>
-
+</div>
 
 <script>
 /* ---------- "Mark module done" buttons and progress bar ----------
@@ -620,7 +787,7 @@ if ("IntersectionObserver" in window) {
   links.forEach(a => { const s = document.querySelector(a.getAttribute("href")); if (s) io.observe(s); });
 }
 
-/* ---------- printing: open every outcome list first ---------- */
+/* ---------- printing: open every panel first ---------- */
 window.addEventListener("beforeprint", () => document.querySelectorAll("details").forEach(d => d.open = true));
 </script>
 </body>
