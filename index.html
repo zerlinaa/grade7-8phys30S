@@ -12,10 +12,11 @@ Fonts when online; offline, the browser uses similar built-in fonts, so
 nothing breaks.
 
 HOW THE GROUP'S WORK IS ORGANIZED
-This guide follows three Physics 40S units: Mechanics, Electricity and
-Medical Physics. Each group member traced one unit back to Grades 7 and 8.
+Physics 40S has four units: Mechanics, Fields, Electricity and Medical
+Physics. Each group member traced one unit back to Grades 7 and 8.
 Every activity card has a coloured tag showing which unit it builds toward:
    <span class="tag t-mech">Mechanics</span>
+   <span class="tag t-fields">Fields</span>
    <span class="tag t-elec">Electricity</span>
    <span class="tag t-med">Medical physics</span>
 Cards with no tag are general (they support every unit).
@@ -50,7 +51,7 @@ Consulted with Claude AI for layout and specific CSS code for website.
   --yellow:#F2C94C; --yellow-soft:#FBEDBF; --blue:#2F55B8; --blue-soft:#DCE4F7;
   --red:#A8382C; --green:#2F7D5B; --mid:#C77A1E;
   /* the four Physics 40S units (tags on cards) */
-  --mech:#5B3F8C; --elec:#A4570F; --med:#9C2F5B;
+  --mech:#5B3F8C; --fields:#1F6F78; --elec:#A4570F; --med:#9C2F5B;
   --radius-lg:22px;
   --head:"Poppins",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
   --body:"Source Serif 4",Georgia,"Times New Roman",serif;
@@ -132,7 +133,12 @@ main{padding:28px 0 80px; min-width:0}
 .star{color:#B8860B;font-family:var(--head)}                /* ★ = major outcome */
 /* unit tags: which Physics 40S unit a card builds toward */
 .tag{display:inline-block;font-family:var(--head);font-size:11.5px;font-weight:600;letter-spacing:.02em;padding:2px 9px;border-radius:99px;color:#fff;white-space:nowrap;vertical-align:middle}
-.t-mech{background:var(--mech)} .t-elec{background:var(--elec)} .t-med{background:var(--med)}
+.t-mech{background:var(--mech)} .t-fields{background:var(--fields)} .t-elec{background:var(--elec)} .t-med{background:var(--med)}
+/* "Source:" line under a card that relies on a reference */
+.src{font-size:13.5px;color:var(--ink-soft)}
+/* "See it" line: a video, photos or a free simulation of the activity */
+.see{font-family:var(--head);font-size:13.5px;font-weight:500;background:var(--blue-soft);border-radius:10px;padding:8px 12px}
+.see b{font-weight:600}
 table{border-collapse:collapse;width:100%;font-size:16px}
 th,td{text-align:left;vertical-align:top;padding:12px 14px;border-bottom:1px solid var(--rule)}
 th{font-family:var(--head);font-size:14px;font-weight:600;background:var(--ink);color:#fff}
@@ -146,7 +152,7 @@ th:first-child{border-top-left-radius:10px}th:last-child{border-top-right-radius
 .theme p{font-size:16px;margin:8px 0 0}
 /* "Four threads" boxes in Module 1: coloured top edge per unit */
 .theme.u{border-width:0 0 0 0;border-top:6px solid}
-.theme.u.t-mech{border-color:var(--mech);background:#fff}
+.theme.u.t-mech{border-color:var(--mech);background:#fff}.theme.u.t-fields{border-color:var(--fields);background:#fff}
 .theme.u.t-elec{border-color:var(--elec);background:#fff}.theme.u.t-med{border-color:var(--med);background:#fff}
 /* an odd last box in a two-column grid stretches full width */
 .themes>:last-child:nth-child(odd),.threads>:last-child:nth-child(odd){grid-column:1/-1}
@@ -180,7 +186,7 @@ dl.olist dd{margin:0}
 .act .top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:8px}
 .act .kind{font-family:var(--head);font-size:13px;font-weight:600;display:inline-flex;gap:6px;align-items:center}
 .act .kind i{width:10px;height:10px;border-radius:3px;display:inline-block}
-.k-demo i{background:var(--yellow)} .k-lab i{background:var(--blue)} .k-ind i{background:var(--green)} .k-ct i{background:var(--red)}
+.k-demo .kind i{background:var(--yellow)} .k-lab .kind i{background:var(--blue)} .k-ind .kind i{background:var(--green)} .k-ct .kind i{background:var(--red)}
 .act h4{margin-bottom:8px}
 .act p{font-size:16px}
 .act ul{padding-left:20px;margin:0 0 12px;font-size:15.5px}
@@ -209,8 +215,8 @@ ul.tight li{margin-bottom:8px;font-size:16.5px}
 /* Module 4: one card per Physics 40S unit */
 .threads{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:14px}
 .tc{background:#fff;border-radius:14px;border:1px solid var(--rule);border-top:6px solid;padding:18px 20px}
-.tc.t-mech{border-top-color:var(--mech)}.tc.t-elec{border-top-color:var(--elec)}.tc.t-med{border-top-color:var(--med)}
-.tc.t-mech,.tc.t-elec,.tc.t-med{background:#fff}  /* keep the card white, not the tag colour */
+.tc.t-mech{border-top-color:var(--mech)}.tc.t-fields{border-top-color:var(--fields)}.tc.t-elec{border-top-color:var(--elec)}.tc.t-med{border-top-color:var(--med)}
+.tc.t-mech,.tc.t-fields,.tc.t-elec,.tc.t-med{background:#fff}  /* keep the card white, not the tag colour */
 .tc h4{margin-bottom:10px}
 .tc dl{margin:0}
 .tc dt{font-family:var(--head);font-size:13px;font-weight:600;color:var(--ink-soft);margin-top:10px}
@@ -276,7 +282,7 @@ footer p{margin:0 0 6px}
   <div class="progress" aria-live="polite"><span id="progtext">0 of 4 modules done</span><div class="bar"><span id="progbar"></span></div></div>
   <!-- key for the coloured unit tags -->
   <div class="rail-key">Physics 40S unit tags<br>
-    <span class="tag t-mech">Mechanics</span><span class="tag t-elec">Electricity</span><span class="tag t-med">Medical physics</span>
+    <span class="tag t-mech">Mechanics</span><span class="tag t-fields">Fields</span><span class="tag t-elec">Electricity</span><span class="tag t-med">Medical physics</span>
   </div>
 </nav>
 
@@ -288,7 +294,7 @@ footer p{margin:0 0 6px}
   <div class="hero">
     <div>
       <h1>Physics in the Middle Years</h1>
-      <p class="lede">Every Physics 40S student was once in a middle years classroom. This guide walks you through the physics in Manitoba's renewed Grade 7 and 8 science outcomes, and shows how each one leads to Physics 40S mechanics, electricity and medical physics.</p>
+      <p class="lede">Every Physics 40S student was once in a middle years classroom. This guide walks you through the physics in Manitoba's renewed Grade 7 and 8 science outcomes, and shows how each one leads to the four units of Physics 40S: mechanics, fields, electricity and medical physics.</p>
       <p class="who">For middle years teachers at any comfort level with physics. About 30 minutes. <span class="star">★</span> marks the outcomes that matter most.</p>
     </div>
     <!-- The chart: one curved line plus a dot and label per course. To move a label, change its x and y. -->
@@ -333,15 +339,17 @@ footer p{margin:0 0 6px}
   </table></div>
 
   <!-- The Physics 40S units this guide follows. Each group member owns one. -->
-  <h3>Three threads to Physics 40S</h3>
-  <p class="prose">This guide follows three Physics 40S units. Every activity carries a tag for the unit it builds toward.</p>
+  <h3>Four threads to Physics 40S</h3>
+  <p class="prose">Physics 40S has four units. Every activity in this guide carries a tag for the unit it builds toward.</p>
   <div class="themes">
     <div class="theme u t-mech"><h4>Mechanics<span class="unit">Physics 40S Unit 1</span></h4><p>Motion, forces, momentum, projectiles, circular motion, work and energy.</p><p><b>Before Grade 7:</b> balanced forces, speed and inertia (Grade 3), friction and simple machines (Grade 5), Earth's gravity, normal force and buoyancy (Grade 6). Grade 7 adds weight in newtons.</p></div>
+    <div class="theme u t-fields"><h4>Fields<span class="unit">Physics 40S Unit 2</span></h4><p>Exploration of space, low Earth orbit, and electric and magnetic fields.</p><p><b>Before Grade 7:</b> forces that act at a distance, such as gravity, magnetism and static electricity (Grade 3), and Earth's gravity and the Solar System (Grade 6). Grade 7 adds gravity as a universal force, orbits, tides and space exploration.</p></div>
     <div class="theme u t-elec"><h4>Electricity<span class="unit">Physics 40S Unit 3</span></h4><p>Electric circuits and electromagnetic induction.</p><p><b>Before Grade 7:</b> battery-powered circuits and electrical safety (Grade 6). Grades 7 and 8 build energy transfer and solar energy; circuits return in Grade 9.</p></div>
     <div class="theme u t-med"><h4>Medical physics<span class="unit">Physics 40S Unit 4</span></h4><p>Radioactive decay, radiation and the body, imaging and treatment.</p><p><b>Before Grade 7:</b> light as energy that travels and is reflected, absorbed or transmitted (Grade 4). Grade 7 adds thermal radiation, Grade 8 the electromagnetic spectrum.</p></div>
   </div>
   <!-- K-6 outcome codes behind the "Before Grade 7" lines: SCI.3.E.4-E.11, SCI.5.E.5-E.8,
-       SCI.6.E.1-E.3 (forces); SCI.6.E.6-E.7 (circuits); SCI.4.E.1-E.5 (light and sound) -->
+       SCI.6.E.1-E.3 (forces); SCI.3.E.5, SCI.6.E.1, SCI.6.E.8-E.11 (fields and space);
+       SCI.6.E.6-E.7 (circuits); SCI.4.E.1-E.5 (light and sound) -->
 
   <h3>If you taught the old clusters</h3>
   <div class="tablewrap"><table>
@@ -396,7 +404,7 @@ footer p{margin:0 0 6px}
 
   <h3>The physics in plain words</h3>
   <div class="bg">
-    <div><h4>Mass is not weight</h4>Mass (kg) is how much matter something has. Weight (N) is gravity's pull on it: about 9.8 N per kilogram on Earth, 1.6 N on the Moon.</div>
+    <div><h4>Mass is not weight</h4>Mass (kg) is how much matter something has. Weight (N) is gravity's pull on it: about 9.8 N per kilogram on Earth, 1.6 N on the Moon (<a href="https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html">NASA</a>).</div>
     <div><h4>An orbit is a fall that misses</h4>A satellite falls toward Earth the whole time, but moves sideways so fast that the ground curves away beneath it. Gravity never switches off in space.</div>
     <div><h4>Heat and temperature differ</h4>Temperature is how fast particles move on average. Heat is energy flowing from hot to cold. Cold doesn't flow in; heat flows out.</div>
     <div><h4>Energy is never used up</h4>Energy moves between stores (motion, height, warmth, a stretched spring) and some always ends up as heat. Efficiency is the useful share.</div>
@@ -409,6 +417,7 @@ footer p{margin:0 0 6px}
       <h4>The drop race</h4><div><span class="slo g7">SCI.7.E.4</span><span class="slo g7">SCI.7.E.5</span></div>
       <p>Drop a tennis ball and a heavier ball from the same height after students predict. They land together. Repeat with a flat and a crumpled sheet of paper.</p>
       <p class="ask">Why did the heavy and light balls land together, but the flat paper didn't?</p>
+      <p class="see"><b>See it:</b> <a href="https://nssdc.gsfc.nasa.gov/planetary/lunar/apollo_15_feather_drop.html">NASA video of a hammer and a feather dropped on the Moon (Apollo 15)</a></p>
       <p class="egg"><strong>Senior high link</strong><br>All objects fall at the same rate without air resistance: free fall in Physics 30S, and projectile motion in Physics 40S.</p></article>
 
     <article class="act k-demo"><div class="top"><span class="kind"><i></i>Demonstration</span><span class="tag t-elec">Electricity</span></div>
@@ -428,10 +437,17 @@ footer p{margin:0 0 6px}
   <!-- Labs -->
   <h3>Labs</h3>
   <div class="acts">
-    <article class="act k-lab"><div class="top"><span class="kind"><i></i>Lab</span><span class="tag t-mech">Mechanics</span></div>
-      <h4>Weight versus mass</h4><div><span class="slo g7">SCI.7.E.5</span><span class="slo g7">SCI.7.C.2</span></div>
-      <p>Groups hang known masses from a spring scale reading in newtons, then graph weight against mass. The slope comes out near 9.8 N per kg. Extension: find each weight on the Moon (1.6 N/kg).</p>
-      <p class="egg"><strong>Senior high link</strong><br>That slope is g. Physics 40S uses it in every force problem (F = mg).</p></article>
+    <article class="act k-lab"><div class="top"><span class="kind"><i></i>Lab</span><span class="tag t-fields">Fields</span></div>
+      <h4>Gravity simulation</h4><div><span class="slo g7">SCI.7.E.4</span><span class="slo g7">SCI.7.E.6</span><span class="slo g7">SCI.7.D.3</span></div>
+      <p>Stretch a smooth piece of fabric over a hula hoop and set a heavy ball in the middle. Students roll a smaller ball across the fabric at different speeds. Slow balls curve and spiral in; fast balls curve and escape; in between, a ball can loop around the centre.</p>
+      <ul>
+        <li>Question: how does a planet pull objects into orbit?</li>
+        <li>Change the ball's speed; keep the central ball, the fabric and the starting point the same.</li>
+        <li>Discuss how gravity can pull in a spacecraft trying to travel past a planet.</li>
+      </ul>
+      <p class="ask">The fabric only dips because Earth's gravity pulls it down. What does this model get right about gravity, and what does it get wrong?</p>
+      <p class="see"><b>See it:</b> <a href="https://www.jpl.nasa.gov/edu/resources/lesson-plan/modeling-the-orbits-of-planets/">NASA JPL lesson with photos and video of the hula-hoop gravity well</a> · <b>Try it:</b> <a href="https://phet.colorado.edu/en/simulations/gravity-and-orbits">PhET Gravity and Orbits</a></p>
+      <p class="egg"><strong>Senior high link</strong><br>Physics 40S low Earth orbit: the speed a satellite needs to stay in orbit, and how spacecraft use a planet's gravity to change course.</p></article>
 
     <article class="act k-lab"><div class="top"><span class="kind"><i></i>Lab</span><span class="tag t-elec">Electricity</span></div>
       <h4>Energy-use audit of the classroom</h4><div><span class="slo g7">SCI.7.C.1</span><span class="slo g7">SCI.7.E.11</span></div>
@@ -449,12 +465,13 @@ footer p{margin:0 0 6px}
   <h3>Indigenous connections</h3>
   <p class="prose">These connect to <span class="slo g7">SCI.7.A.1</span>. Work through your division's protocols when inviting Elders or Knowledge Keepers; the Manitoba First Nations Education Resource Centre (MFNERC) is a good starting point. Don't present First Nations, Métis and Inuit perspectives as a single viewpoint.</p>
   <div class="acts">
-    <article class="act k-ind"><div class="top"><span class="kind"><i></i>Indigenous connection</span><span class="tag t-mech">Mechanics</span></div>
-      <h4>The bow as an energy store</h4><div><span class="slo g7">SCI.7.A.1</span><span class="slo g7">SCI.7.E.11</span></div>
-      <p>Drawing a bow does work on it, storing energy in the bent wood. When the string is released, that energy moves to the arrow as motion, and a little ends up as sound and heat. Invite a local Knowledge Keeper or bowmaker and let them decide what to share.</p>
-      <p class="ask">Where does the energy in a flying arrow come from, and where does it end up?</p>
-      <p class="safe"><b>Safety:</b> No strung bow and arrows in class without division approval; a video or an unstrung bow works.</p>
-      <p class="egg"><strong>Senior high link</strong><br>Work and energy in Physics 40S: the work done drawing the bow becomes the arrow's kinetic energy, and its flight is projectile motion.</p></article>
+    <article class="act k-ind"><div class="top"><span class="kind"><i></i>Indigenous connection</span><span class="tag t-fields">Fields</span></div>
+      <h4>Ininew (Cree) star knowledge</h4><div><span class="slo g7">SCI.7.A.1</span><span class="slo g7">SCI.7.E.13</span><span class="slo g7">SCI.7.E.14</span></div>
+      <p>In <i>Tipiskawi Kisik: Night Sky Star Stories</i>, Manitoba Cree astronomer Wilfred Buck shares Ininew constellations, such as Mista Muskwa (the Great Bear) and Niska (the Goose), and the knowledge that goes with them. Students compare how the constellations move through the night and across seasons with Earth's rotation and revolution.</p>
+      <p class="ask">The Great Bear circles the North Star every night. What is actually moving?</p>
+      <p class="src">Source: <a href="https://mfnerc.org/product/tipiskawi-kisik-night-sky-star-stories/">Buck (2018), MFNERC</a></p>
+      <p class="see"><b>Hear it:</b> <a href="https://www.uvic.ca/research/centres/arc/home/home/news/wilfred-buck-talk-2021.php">Wilfred Buck's talk "One Sky, Many Astronomies" (University of Victoria, 2021, with recording)</a></p>
+      <p class="egg"><strong>Senior high link</strong><br>Physics 40S exploration of space: observing the sky is where models of orbits began.</p></article>
     <article class="act k-ind"><div class="top"><span class="kind"><i></i>Indigenous connection</span><span class="tag t-elec">Electricity</span></div>
       <h4>Energy choices in our community</h4><div><span class="slo g7">SCI.7.A.1</span><span class="slo g7">SCI.7.C.1</span></div>
       <p>Students investigate energy use and energy choices in their local community, including the benefits and impacts of different sources. If Indigenous knowledge is part of the lesson, work with a local Knowledge Keeper, Elder or community partner and follow their guidance on what may be shared.</p></article>
@@ -495,7 +512,7 @@ footer p{margin:0 0 6px}
   <h3>Watch for</h3>
   <ul class="tight">
     <li>"Heavier objects fall faster." Challenge it with the drop race.</li>
-    <li>"There's no gravity in space." Challenge it with orbits as falling.</li>
+    <li><span class="tag t-fields">Fields</span> "There's no gravity in space." Challenge it with orbits as falling: at the space station's height, gravity is still about 90 percent as strong as on the ground; astronauts float because they're in free fall around Earth (<a href="https://www.nasa.gov/?p=41317">NASA</a>).</li>
     <li><span class="tag t-med">Medical physics</span> "Radiation means something radioactive." In Grade 7, radiation is heat from the Sun or a campfire travelling as electromagnetic waves. The ionizing radiation used in medicine comes in Physics 40S. That difference makes a great curiosity question.</li>
   </ul>
   <div class="mod-foot"><span class="mod-meta">Next: Grade 8 physics</span><button class="mark" data-mod="m2" aria-pressed="false">Mark module 2 done</button></div>
@@ -552,6 +569,7 @@ footer p{margin:0 0 6px}
       <p>Connect a small solar cell to a low-voltage motor or buzzer. Compare its output in sunlight, in shade and under a lamp. Students sketch the setup and name the energy input and output.</p>
       <p class="ask">What does the solar cell need to power the device? Is it creating energy, or converting it?</p>
       <p class="safe"><b>Safety:</b> Never connect the solar cell to household wiring or mains electricity.</p>
+      <p class="see"><b>Try it:</b> <a href="https://phet.colorado.edu/en/simulations/circuit-construction-kit-dc">PhET Circuit Construction Kit: DC</a> to review Grade 6 circuits first</p>
       <p class="egg"><strong>Senior high link</strong><br>Grade 9 introduces current, voltage, resistance and circuits as outcomes <span class="slo g9">SCI.9.E.10</span>.</p></article>
 
     <article class="act k-demo"><div class="top"><span class="kind"><i></i>Demonstration</span><span class="tag t-mech">Mechanics</span></div>
@@ -559,6 +577,7 @@ footer p{margin:0 0 6px}
       <p>Float a medicine dropper (or a ketchup packet) in a full, capped 2 L bottle of water. Squeeze the bottle and the diver sinks; let go and it rises. A gentle squeeze makes it hover.</p>
       <p class="ask">Nothing touched the diver. What changed that made it sink?</p>
       <p>Squeezing compresses the air bubble inside the dropper, so the diver's overall density rises above the water's. Students met buoyancy as a force opposing gravity in Grade 6 (SCI.6.E.2, E.3).</p>
+      <p class="see"><b>How-to:</b> <a href="https://www.teachengineering.org/activities/uoh_fluidmechanics_lesson01_activity1">Making a pipette or condiment-packet diver (TeachEngineering)</a></p>
       <p class="egg"><strong>Senior high link</strong><br>When the diver hovers, the forces balance: free-body diagrams and Newton's first law in Science 10 <span class="slo g10">SCI.10.E.7</span> and Physics 40S dynamics.</p></article>
   </div>
 
@@ -569,13 +588,20 @@ footer p{margin:0 0 6px}
       <h4>Sorting the electromagnetic spectrum</h4><div><span class="slo g8">SCI.8.E.8</span><span class="slo g8">SCI.8.E.9</span></div>
       <p>Students match types of radiation to technologies: radio, microwave ovens, infrared thermometers, visible light, UV protection and medical X-rays. They order the types by wavelength and compare their relative frequencies and energies.</p>
       <p class="ask">X-rays pass through soft tissue more easily than through bone. How could a doctor use that?</p>
+      <p class="see"><b>See it:</b> <a href="https://science.nasa.gov/ems/">NASA Tour of the Electromagnetic Spectrum (short videos for each type of wave)</a></p>
       <p class="egg"><strong>Senior high link</strong><br>Physics 40S medical physics: diagnostic imaging, and ionizing versus non-ionizing radiation.</p></article>
 
-    <article class="act k-lab"><div class="top"><span class="kind"><i></i>Lab</span><span class="tag t-mech">Mechanics</span></div>
-      <h4>Density from a graph</h4><div><span class="slo g8">SCI.8.E.1</span><span class="slo g8">SCI.8.C.2</span></div>
-      <p>Groups measure the mass and volume (by water displacement) of several different-sized pieces of one material, such as modelling clay or aluminum, and graph mass against volume. The slope is the density. A second material gives a different slope.</p>
-      <p class="safe"><b>Safety:</b> Wipe up spills right away; handle glass graduated cylinders with care.</p>
-      <p class="egg"><strong>Senior high link</strong><br>Physics 40S reads meaning from slopes: the slope of a position–time graph is velocity, and of a velocity–time graph, acceleration.</p></article>
+    <article class="act k-lab"><div class="top"><span class="kind"><i></i>Lab</span><span class="tag t-fields">Fields</span></div>
+      <h4>Make an electromagnet</h4><div><span class="slo g8">SCI.8.C.3</span><span class="slo g9">SCI.9.E.11</span></div>
+      <p class="conn">An enrichment bridge: electromagnets are a Grade 9 outcome. It builds on Grade 6 circuits and the Grade 8 big idea that energy moves between stores.</p>
+      <p>Students wrap insulated copper wire around an iron nail and connect the ends to a battery. Current flowing through the coil makes a magnetic field that magnetizes the nail, so it picks up paper clips. Energy moves from chemical (battery) to electrical (wire), and some is lost as heat.</p>
+      <ul>
+        <li>Question: can a nonmagnetic piece of metal be made magnetic?</li>
+        <li>Count the paper clips picked up; try more coils, or none.</li>
+      </ul>
+      <p class="safe"><b>Safety:</b> The coil heats up quickly. Use one 1.5 V cell, connect it for a few seconds at a time, and wear safety glasses.</p>
+      <p class="see"><b>Try it:</b> <a href="https://phet.colorado.edu/en/simulations/magnets-and-electromagnets">PhET Magnets and Electromagnets</a></p>
+      <p class="egg"><strong>Senior high link</strong><br>Grade 9 electromagnets and generators; Physics 40S magnetic fields around wires and coils.</p></article>
   </div>
 
   <!-- Indigenous connections (Strand A) -->
@@ -602,6 +628,7 @@ footer p{margin:0 0 6px}
     <dt>Keep the same</dt><dd>Exposure time, sunlight conditions, and the type of bead or card (controlled variables).</dd>
     <dt>Conclude</dt><dd>Use the results to make evidence-based sun-safety recommendations and discuss the limitations of the model.</dd>
   </dl>
+  <p class="see" style="margin-top:12px"><b>See it:</b> <a href="https://www.scienceworld.ca/resource/uv-beads/">Science World's UV beads and sunscreen activity</a>. UV beads need real sunlight; indoor lights won't change them.</p>
 
   <!-- Critical thinking -->
   <h3>Critical thinking</h3>
@@ -637,7 +664,7 @@ footer p{margin:0 0 6px}
      activity, what Physics 40S does with it, and one "easter egg" line. -->
 <section class="sheet" id="m4" aria-labelledby="m4h">
   <div class="mod-head"><h2 id="m4h">4. Looking ahead</h2><span class="mod-meta">6 minutes</span></div>
-  <p class="lede prose">What you teach in Grades 7 and 8 shows up again in the renewed Science 9 and 10, then in Physics 40S. Each card ends with an easter egg: a one-line question that costs nothing now and clicks years later.</p>
+  <p class="lede prose">What you teach in Grades 7 and 8 shows up again in the renewed Science 9 and 10, then in the four units of Physics 40S. Each card ends with an easter egg: a one-line question that costs nothing now and clicks years later.</p>
 
   <div class="threads">
     <article class="tc t-mech"><h4><span class="tag t-mech">Mechanics</span></h4>
@@ -649,6 +676,16 @@ footer p{margin:0 0 6px}
         <dt>Physics 40S</dt><dd>Kinematics, dynamics, momentum, projectile and circular motion, work and energy.</dd>
       </dl>
       <p class="eggq"><strong>Easter egg</strong><br>"The heavy and light balls landed together. What if you threw one sideways at the same moment?"</p></article>
+
+    <article class="tc t-fields"><h4><span class="tag t-fields">Fields</span></h4>
+      <dl>
+        <dt>Before Grade 7</dt><dd>Forces at a distance: gravity, magnetism, static electricity <span class="slo">SCI.3.E.5</span>; Earth's gravity and the Solar System <span class="slo">SCI.6.E.1</span><span class="slo">SCI.6.E.8–E.11</span></dd>
+        <dt>Roots in Grades 7–8</dt><dd>Gravity, orbits and tides <span class="slo g7">SCI.7.E.4–E.7</span>; the Solar System and space exploration <span class="slo g7">SCI.7.E.12–E.15</span>; solar radiation <span class="slo g8">SCI.8.E.8</span></dd>
+        <dt>Science 9–10</dt><dd>Electrons and magnetic fields <span class="slo g9">SCI.9.E.11</span>; motion and Newton's laws <span class="slo g10">SCI.10.E.6</span><span class="slo g10">SCI.10.E.7</span>; the universe, stars and the laws of gravity <span class="slo g10">SCI.10.E.15–E.18</span></dd>
+        <dt>Spark curiosity</dt><dd>Grade 10 says objects in the sky and on Earth obey the same laws of gravity <span class="slo g10">SCI.10.E.18</span>. Ask: if an apple falls, why doesn't the Moon?</dd>
+        <dt>Physics 40S</dt><dd>Exploration of space, low Earth orbit, and electric and magnetic fields.</dd>
+      </dl>
+      <p class="eggq"><strong>Easter egg</strong><br>"Astronauts aren't weightless. They're falling around Earth."</p></article>
 
     <article class="tc t-med"><h4><span class="tag t-med">Medical physics</span></h4>
       <dl>
@@ -687,12 +724,20 @@ footer p{margin:0 0 6px}
       <p>Run a low-voltage motor or buzzer from a small classroom solar cell under a lamp or sunlight, then shade it. Students name the input and output energy and predict how distance or angle will change the output. <i>Does brighter light always produce a larger output? What would we need to control to test this?</i></p></div>
     <div><h4><span class="tag t-elec">Electricity</span> Lab: testing a small solar cell</h4>
       <p>Keep the same cell and lamp; change one variable (distance or angle), record the voltage or another teacher-approved output, and repeat trials. Use a multimeter only if students have been trained on it. A bridge activity: solar radiation itself is a Grade 8 outcome.</p></div>
-    <div><h4>Indigenous connection: the iglu as thermal engineering <span class="slo g7">SCI.7.E.9</span></h4>
-      <p>Snow traps air, making it an excellent insulator. The sleeping platform is raised because warm air rises (convection), and the entrance is dug below the floor so cold, dense air stays out. <i>Which kinds of heat transfer does the iglu design control?</i></p></div>
+    <div><h4><span class="tag t-mech">Mechanics</span> Lab: weight versus mass <span class="slo g7">SCI.7.E.5</span><span class="slo g7">SCI.7.C.2</span></h4>
+      <p>Groups hang known masses from a spring scale reading in newtons, then graph weight against mass. The slope comes out near 9.8 N per kg. Extension: find each weight on the Moon, where gravity is 1.62 N/kg (<a href="https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html">NASA Moon Fact Sheet</a>). That slope is g, used in every Physics 40S force problem (F = mg).</p></div>
+    <div><h4>Indigenous connection: the iglu and heat transfer <span class="slo g7">SCI.7.A.1</span><span class="slo g7">SCI.7.E.9</span></h4>
+      <p>Hard snow walls are good insulators that keep in body heat and the heat from oil lamps. Some iglus have tiered floors so people can sleep higher up, where it's warmer, and narrow entry passages are sometimes dug just below ground level. <i>Using convection, explain why sleeping higher is warmer. Why might a low entrance help?</i></p>
+      <p class="src">Source: <a href="https://encyclopediecanadienne.ca/article/igloo">"Igloo," The Canadian Encyclopedia</a></p></div>
+    <div><h4><span class="tag t-mech">Mechanics</span> Indigenous connection: the bow as an energy store <span class="slo g7">SCI.7.A.1</span><span class="slo g7">SCI.7.E.11</span></h4>
+      <p>Drawing a bow stores elastic energy in the bent wood, and releasing it moves that energy to the arrow. In Montana, a physics class studied elastic potential energy using two traditional bows made by Francis Cahoon of the Confederated Salish and Kootenai Tribes, hanging weights from the strings to measure how the bows bend. For a Manitoba class, invite a local bowmaker or Knowledge Keeper through your division's protocols. <i>Where does the energy in a flying arrow come from, and where does it end up?</i> Leads to work and energy in Physics 40S.</p>
+      <p class="src">Source: <a href="https://physicstoday.aip.org/news/polson-high-school-students-use-primitive-bows-to-study-physics">Physics Today (2010), from the Missoulian</a></p></div>
   </div>
 
   <h3>Grade 8</h3>
   <div class="more prose">
+    <div><h4><span class="tag t-mech">Mechanics</span> Lab: density from a graph <span class="slo g8">SCI.8.E.1</span><span class="slo g8">SCI.8.C.2</span></h4>
+      <p>Groups measure the mass and volume (by water displacement) of several different-sized pieces of one material, such as modelling clay or aluminum, and graph mass against volume. The slope is the density; a second material gives a different slope. Leads to reading slopes in Physics 40S kinematics: the slope of a velocity–time graph is acceleration.</p></div>
     <div><h4><span class="tag t-elec">Electricity</span> Lab: solar-cell output investigation <span class="slo g8">SCI.8.E.7</span><span class="slo g8">SCI.8.C.3</span></h4>
       <p>Students change the angle or distance of a small solar cell from a lamp, control the other variables, take at least three readings per condition, graph them, and write a conclusion that refers to the data. Use low-voltage equipment and a teacher-approved light source. Connects solar energy to generating electricity.</p></div>
     <div><h4><span class="tag t-elec">Electricity</span> Demo: conductors and insulators</h4>
@@ -732,6 +777,26 @@ footer p{margin:0 0 6px}
       <li><a href="https://www.edu.gov.mb.ca/k12/cur/science/found/physics40s/full_doc.pdf">Grade 12 Physics (40S): A Foundation for Implementation</a></li>
       <li><a href="https://www.edu.gov.mb.ca/k12/cur/science/index.html">Manitoba Education: Science (renewed K–10 status)</a></li>
       <li><a href="https://www.edu.gov.mb.ca/k12/cur/science/found/5to8/index.html">Grades 5 to 8 Science: A Foundation for Implementation (the old clusters)</a></li>
+      <li>Rollout of the renewed curriculum: <a href="https://www.cp24.com/news/canada/2026/05/15/new-science-curriculum-draws-concerns-from-some-teachers-across-the-province/">"New science curriculum draws concerns from some teachers across the province," CP24 (May 15, 2026)</a></li>
+    </ul>
+    <h3>References for activities</h3>
+    <ul>
+      <li>Buck, W. (2018). <i>Tipiskawi kisik: Night sky star stories</i>. <a href="https://mfnerc.org/product/tipiskawi-kisik-night-sky-star-stories/">Manitoba First Nations Education Resource Centre</a>.</li>
+      <li><a href="https://mfnerc.org/">Manitoba First Nations Education Resource Centre (MFNERC)</a></li>
+      <li><a href="https://encyclopediecanadienne.ca/article/igloo">"Igloo." The Canadian Encyclopedia</a></li>
+      <li><a href="https://physicstoday.aip.org/news/polson-high-school-students-use-primitive-bows-to-study-physics">"Polson High School students use primitive bows to study physics." Physics Today (October 28, 2010), from the Missoulian</a></li>
+      <li><a href="https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html">NASA. Moon Fact Sheet</a> (Moon's surface gravity, 1.62 m/s²)</li>
+      <li><a href="https://www.nasa.gov/?p=41317">NASA. What Is Microgravity? (Grades 5–8)</a></li>
+    </ul>
+    <h3>Videos, how-tos and simulations</h3>
+    <ul>
+      <li><a href="https://nssdc.gsfc.nasa.gov/planetary/lunar/apollo_15_feather_drop.html">NASA. Apollo 15 Hammer-Feather Drop</a> (video)</li>
+      <li><a href="https://www.jpl.nasa.gov/edu/resources/lesson-plan/modeling-the-orbits-of-planets/">NASA JPL Education. Modeling the Orbits of Planets</a> (lesson with photos and video)</li>
+      <li><a href="https://www.uvic.ca/research/centres/arc/home/home/news/wilfred-buck-talk-2021.php">University of Victoria. Public talk by Wilfred Buck: "One Sky, Many Astronomies" (2021)</a> (recording)</li>
+      <li><a href="https://www.teachengineering.org/activities/uoh_fluidmechanics_lesson01_activity1">TeachEngineering. Buoyancy and Pressure in Fluids: Soda Bottle Cartesian Diver</a></li>
+      <li><a href="https://science.nasa.gov/ems/">NASA Science. The Electromagnetic Spectrum Video Series</a></li>
+      <li><a href="https://www.scienceworld.ca/resource/uv-beads/">Science World. UV Beads</a></li>
+      <li>PhET Interactive Simulations, University of Colorado Boulder: <a href="https://phet.colorado.edu/en/simulations/gravity-and-orbits">Gravity and Orbits</a>, <a href="https://phet.colorado.edu/en/simulations/magnets-and-electromagnets">Magnets and Electromagnets</a>, <a href="https://phet.colorado.edu/en/simulations/circuit-construction-kit-dc">Circuit Construction Kit: DC</a></li>
     </ul>
   </div>
 </section>
